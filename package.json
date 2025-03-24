@@ -1,0 +1,33 @@
+{
+  "name": "rag-chat-sample-app",
+  "version": "1.0.0",
+  "description": "このリポジトリは、Cursor 上でデザインシステムを構築・管理するためのルールを提供します。",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "^3.2.6",
+    "@storybook/addon-essentials": "^8.6.8",
+    "@storybook/addon-onboarding": "^8.6.8",
+    "@storybook/blocks": "^8.6.8",
+    "@storybook/experimental-addon-test": "^8.6.8",
+    "@storybook/experimental-nextjs-vite": "^8.6.8",
+    "@storybook/react": "^8.6.8",
+    "@storybook/test": "^8.6.8",
+    "@vitest/browser": "^3.0.9",
+    "@vitest/coverage-v8": "^3.0.9",
+    "playwright": "^1.51.1",
+    "prop-types": "^15.8.1",
+    "storybook": "^8.6.8",
+    "vitest": "^3.0.9"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
