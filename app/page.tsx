@@ -21,7 +21,13 @@ export default function Home() {
           margin: "0 auto",
         }}
       >
-        <ChatInterface title="Almondo RAG チャットアシスタント" />
+        <ChatInterface
+          title="Almondo RAG チャットアシスタント"
+          initialMessages={[]}
+          onNewMessage={() => {}}
+          onReset={() => {}}
+          onSettingsClick={() => {}}
+        />
       </div>
     </main>
   );
