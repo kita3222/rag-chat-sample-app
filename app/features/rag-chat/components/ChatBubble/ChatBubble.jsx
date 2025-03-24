@@ -25,18 +25,19 @@ const getVariantStyles = (variant) => {
         border-radius: var(--border-radius-lg) var(--border-radius-lg) 0
           var(--border-radius-lg);
 
-        &::after {
+        /* 右下の矢印部分を修正 */
+        &::before {
           content: "";
           position: absolute;
-          bottom: 0;
-          right: -8px;
-          width: 16px;
-          height: 16px;
+          bottom: -10px;
+          right: 10px;
+          width: 20px;
+          height: 20px;
           background-color: var(--color-primary-10);
           border-right: var(--border-width-thin) solid var(--color-primary-20);
           border-bottom: var(--border-width-thin) solid var(--color-primary-20);
-          border-radius: 0 0 0 10px;
-          clip-path: polygon(0 0, 0% 100%, 100% 100%);
+          transform: rotate(45deg);
+          border-radius: 0 0 4px 0;
         }
       `;
     case VARIANTS.REFERENCE:
@@ -75,18 +76,19 @@ const getVariantStyles = (variant) => {
         border-radius: var(--border-radius-lg) var(--border-radius-lg)
           var(--border-radius-lg) 0;
 
-        &::after {
+        /* 左下の矢印部分を修正 */
+        &::before {
           content: "";
           position: absolute;
-          bottom: 0;
-          left: -8px;
-          width: 16px;
-          height: 16px;
+          bottom: -10px;
+          left: 10px;
+          width: 20px;
+          height: 20px;
           background-color: var(--color-white);
           border-left: var(--border-width-thin) solid var(--color-gray-300);
           border-bottom: var(--border-width-thin) solid var(--color-gray-300);
-          border-radius: 0 0 10px 0;
-          clip-path: polygon(100% 0, 0 100%, 100% 100%);
+          transform: rotate(45deg);
+          border-radius: 0 0 0 4px;
         }
       `;
   }
@@ -135,8 +137,10 @@ const BubbleContainer = styled.div`
   padding: var(--message-padding);
   max-width: 70%;
   word-wrap: break-word;
-  margin-bottom: var(--message-spacing);
+  margin-bottom: var(--message-spacing, 16px);
   transition: all var(--transition-fast) var(--transition-timing);
+  /* 矢印部分のためにマージンを追加 */
+  margin-bottom: calc(var(--message-spacing, 16px) + 10px);
 
   /* バリアントスタイル */
   ${(props) => getVariantStyles(props.variant)}
