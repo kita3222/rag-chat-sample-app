@@ -80,25 +80,25 @@
   --font-weight-semibold: 550;
   --font-weight-bold: 650;
 
-  /* スペーシング - よりコンパクトに */
+  /* スペーシング - よりゆとりを持たせる */
   --space-0-5: 2px;
   --space-1: 4px;
-  --space-2: 6px;
-  --space-3: 10px;
-  --space-4: 14px;
-  --space-5: 20px;
-  --space-6: 28px;
-  --space-7: 36px;
-  --space-8: 44px;
-  --space-9: 60px;
-  --space-10: 76px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 40px;
+  --space-7: 48px;
+  --space-8: 56px;
+  --space-9: 72px;
+  --space-10: 96px;
 
-  /* コンポーネント固有 - サイズダウン */
-  --button-padding-h: var(--space-3);
+  /* コンポーネント固有 - ゆとりを持たせる */
+  --button-padding-h: var(--space-4);
   --button-padding-v: var(--space-2);
-  --input-padding: var(--space-2);
-  --card-padding: var(--space-3);
-  --list-item-spacing: var(--space-2);
+  --input-padding: var(--space-3);
+  --card-padding: var(--space-4);
+  --list-item-spacing: var(--space-3);
 
   /* レイアウト固有 */
   --container-padding-mobile: var(--space-3);
@@ -106,9 +106,9 @@
   --section-spacing-medium: var(--space-7);
 
   /* チャット固有 */
-  --message-spacing: var(--space-2);
-  --message-group-spacing: var(--space-4);
-  --message-padding: var(--space-2);
+  --message-spacing: var(--space-3);
+  --message-group-spacing: var(--space-5);
+  --message-padding: var(--space-3);
 
   /* ボーダーラディウス - よりシャープかつ洗練された印象に */
   --border-radius-sm: 4px;

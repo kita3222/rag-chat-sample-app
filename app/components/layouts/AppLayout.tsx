@@ -17,14 +17,14 @@ const LayoutContainer = styled.div`
 
 const MainContent = styled.main`
   flex: 1;
-  padding: var(--space-4);
+  padding: var(--space-5);
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
 `;
 
 const Footer = styled.footer`
-  padding: var(--space-3) var(--space-4);
+  padding: var(--space-4) var(--space-5);
   border-top: var(--border-width-thin) solid var(--color-gray-200);
   text-align: center;
   font-size: var(--font-size-sm);

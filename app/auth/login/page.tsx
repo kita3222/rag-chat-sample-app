@@ -11,31 +11,31 @@ import { useAuth } from "../AuthProvider";
 import AppLayout from "../../components/layouts/AppLayout";
 
 const LoginContainer = styled.div`
-  max-width: 400px;
-  margin: 40px auto;
+  max-width: 480px;
+  margin: 60px auto;
   width: 100%;
 `;
 
 const LoginCard = styled(Card)`
-  margin-top: var(--space-6);
+  margin-top: var(--space-8);
 `;
 
 const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-5);
 `;
 
 const FormHeader = styled.div`
   text-align: center;
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-6);
 `;
 
 const FormTitle = styled.h1`
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-semibold);
   color: var(--color-gray-900);
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-3);
 `;
 
 const FormDescription = styled.p`
@@ -46,12 +46,13 @@ const FormDescription = styled.p`
 const FormActions = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: var(--space-4);
+  margin-top: var(--space-3);
 `;
 
 const FormFooter = styled.div`
   text-align: center;
-  margin-top: var(--space-4);
+  margin-top: var(--space-6);
   font-size: var(--font-size-sm);
   color: var(--color-gray-600);
 `;
@@ -59,10 +60,10 @@ const FormFooter = styled.div`
 const ErrorMessage = styled.div`
   color: var(--color-error);
   font-size: var(--font-size-sm);
-  padding: var(--space-2);
+  padding: var(--space-3);
   background-color: var(--color-error-10);
   border-radius: var(--border-radius-sm);
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-4);
 `;
 
 export default function LoginPage() {
@@ -71,7 +72,7 @@ export default function LoginPage() {
   const { login, user, error, loading } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const redirectTo = searchParams.get("redirectTo") || "/";
+  const redirectTo = searchParams.get("redirectTo") || "/chat";
 
   useEffect(() => {
     if (user) {

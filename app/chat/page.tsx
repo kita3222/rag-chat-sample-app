@@ -369,7 +369,7 @@ export default function ChatPage() {
     <ProtectedRoute>
       <AppLayout>
         <ChatContainer>
-          <SidebarContainer variant={Card.VARIANTS.FLAT}>
+          <SidebarContainer variant={Card.VARIANTS.DEFAULT}>
             <SidebarHeader>
               <Button
                 onClick={handleNewConversation}

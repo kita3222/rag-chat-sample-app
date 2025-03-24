@@ -76,7 +76,7 @@ export default function SignupPage() {
 
   useEffect(() => {
     if (user) {
-      router.push("/");
+      router.push("/chat");
     }
   }, [user, router]);
 

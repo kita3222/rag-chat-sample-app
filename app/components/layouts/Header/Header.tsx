@@ -10,7 +10,7 @@ const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 1.5rem;
+  padding: var(--space-3) var(--space-5);
   background-color: var(--color-white);
   border-bottom: 1px solid var(--color-gray-200);
   width: 100%;

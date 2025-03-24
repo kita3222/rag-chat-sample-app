@@ -111,7 +111,7 @@ export default function AppHeader() {
 
   return (
     <HeaderWrapper>
-      <Link href="/" passHref>
+      <Link href={user ? "/chat" : "/auth/login"} passHref>
         <Logo>
           <LogoIcon>A</LogoIcon>
           <span>Almondo RAG Chat</span>
@@ -119,10 +119,6 @@ export default function AppHeader() {
       </Link>
 
       <Navigation>
-        <NavLink href="/" $active={isActive("/")}>
-          ホーム
-        </NavLink>
-
         <NavLink href="/chat" $active={isActive("/chat")}>
           チャット
         </NavLink>

@@ -20,26 +20,26 @@ interface SizeStyleProps {
   inputSize: SizeType;
 }
 
-// サイズに基づくスタイル - よりコンパクトに
+// サイズに基づくスタイル
 const getSizeStyles = (inputSize: SizeType) => {
   switch (inputSize) {
     case SIZES.SMALL:
       return css`
-        height: 28px;
-        padding: 0 var(--space-2);
+        height: 32px;
+        padding: 0 var(--space-3);
         font-size: var(--font-size-sm);
       `;
     case SIZES.LARGE:
       return css`
-        height: 42px;
-        padding: 0 var(--space-3);
+        height: 48px;
+        padding: 0 var(--space-4);
         font-size: var(--font-size-lg);
       `;
     case SIZES.MEDIUM:
     default:
       return css`
-        height: 34px;
-        padding: 0 var(--space-2);
+        height: 40px;
+        padding: 0 var(--space-3);
         font-size: var(--font-size-md);
       `;
   }
@@ -62,14 +62,11 @@ const InputField = styled.input<InputFieldProps>`
   width: 100%;
   border: var(--border-width-thin) solid var(--color-gray-300);
   border-radius: var(--border-radius-md);
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: var(--color-white);
   font-family: var(--font-family-base);
   color: var(--color-gray-900);
   transition: all var(--transition-fast) var(--transition-timing);
   outline: none;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.01);
-  backdrop-filter: blur(8px);
-  letter-spacing: 0.01em;
 
   /* サイズスタイル */
   ${(props) => getSizeStyles(props.inputSize)}
@@ -79,7 +76,7 @@ const InputField = styled.input<InputFieldProps>`
     props.hasError &&
     css`
       border-color: var(--color-error);
-      background-color: var(--color-error-10);
+      background-color: var(--color-error-10, rgba(227, 73, 53, 0.1));
     `}
   
   ${(props) =>
@@ -90,58 +87,46 @@ const InputField = styled.input<InputFieldProps>`
   
   /* 無効状態 */
   &:disabled {
-    background-color: var(--color-gray-50);
-    border-color: var(--color-gray-200);
+    background-color: var(--color-gray-100);
+    border-color: var(--color-gray-300);
     color: var(--color-gray-500);
     cursor: not-allowed;
-    opacity: 0.6;
   }
 
   /* フォーカス状態 */
   &:focus {
     border-color: var(--color-primary);
-    box-shadow: 0 0 0 1px var(--color-primary-10);
-    background-color: rgba(255, 255, 255, 0.95);
-  }
-
-  /* ホバー状態 */
-  &:hover:not(:disabled):not(:focus) {
-    border-color: var(--color-gray-400);
-    background-color: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 0 0 2px var(--color-primary-20);
   }
 
   /* アイコン付きの場合の余白調整 */
   ${(props) =>
     props.hasLeftIcon &&
     css`
-      padding-left: calc(var(--space-3) + 16px);
+      padding-left: calc(var(--space-4) + 20px);
     `}
 
   ${(props) =>
     props.hasRightIcon &&
     css`
-      padding-right: calc(var(--space-3) + 16px);
+      padding-right: calc(var(--space-4) + 20px);
     `}
   
   /* プレースホルダースタイル */
   &::placeholder {
     color: var(--color-gray-500);
-    opacity: 0.7;
   }
 `;
 
 const LeftIconWrapper = styled.div`
   position: absolute;
   top: 50%;
-  left: var(--space-2);
+  left: var(--space-3);
   transform: translateY(-50%);
-  color: var(--color-gray-500);
+  color: var(--color-gray-600);
   display: flex;
   align-items: center;
   justify-content: center;
-  pointer-events: none;
-  opacity: 0.8;
-  font-size: 0.9em;
 `;
 
 interface RightIconWrapperProps {
@@ -151,37 +136,27 @@ interface RightIconWrapperProps {
 const RightIconWrapper = styled.div<RightIconWrapperProps>`
   position: absolute;
   top: 50%;
-  right: var(--space-2);
+  right: var(--space-3);
   transform: translateY(-50%);
-  color: var(--color-gray-500);
+  color: var(--color-gray-600);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: ${(props) => (props.clickable ? "pointer" : "default")};
-  opacity: 0.7;
-  transition: opacity var(--transition-fast) var(--transition-timing);
-  font-size: 0.9em;
-
-  &:hover {
-    opacity: 1;
-    color: var(--color-gray-700);
-  }
 `;
 
 const ErrorMessage = styled.div`
   color: var(--color-error);
-  font-size: calc(var(--font-size-sm) - 1px);
+  font-size: var(--font-size-sm);
   margin-top: var(--space-1);
-  font-weight: var(--font-weight-medium);
 `;
 
 const Label = styled.label`
   display: block;
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
-  color: var(--color-gray-700);
+  color: var(--color-gray-800);
   margin-bottom: var(--space-1);
-  letter-spacing: 0.01em;
 `;
 
 export interface InputProps

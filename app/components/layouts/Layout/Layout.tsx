@@ -58,10 +58,10 @@ const SidebarContainer = styled.div`
 const ContentContainer = styled.main`
   flex: 1;
   overflow-y: auto;
-  padding: 1.5rem;
+  padding: var(--space-5);
 
   @media (max-width: 768px) {
-    padding: 1rem;
+    padding: var(--space-3);
   }
 `;
 
