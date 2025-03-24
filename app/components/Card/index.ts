@@ -1,4 +1,5 @@
 import Card, { VARIANTS, CardVariant } from "./Card";
 
-export { VARIANTS, CardVariant };
+export { VARIANTS };
+export type { CardVariant };
 export default Card;

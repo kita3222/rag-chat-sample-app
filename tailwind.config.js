@@ -1,0 +1,113 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+    "./stories/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          DEFAULT: "var(--color-primary)",
+          light: "var(--color-primary-light)",
+          dark: "var(--color-primary-dark)",
+          5: "var(--color-primary-5)",
+          10: "var(--color-primary-10)",
+          20: "var(--color-primary-20)",
+          40: "var(--color-primary-40)",
+          60: "var(--color-primary-60)",
+        },
+        secondary: {
+          DEFAULT: "var(--color-secondary)",
+          light: "var(--color-secondary-light)",
+          dark: "var(--color-secondary-dark)",
+          10: "var(--color-secondary-10)",
+          20: "var(--color-secondary-20)",
+        },
+        success: {
+          DEFAULT: "var(--color-success)",
+          light: "var(--color-success-light)",
+          10: "var(--color-success-10)",
+        },
+        warning: {
+          DEFAULT: "var(--color-warning)",
+          light: "var(--color-warning-light)",
+          10: "var(--color-warning-10)",
+        },
+        error: {
+          DEFAULT: "var(--color-error)",
+          light: "var(--color-error-light)",
+          10: "var(--color-error-10)",
+        },
+        info: {
+          DEFAULT: "var(--color-info)",
+          light: "var(--color-info-light)",
+          10: "var(--color-info-10)",
+        },
+        gray: {
+          50: "var(--color-gray-50)",
+          100: "var(--color-gray-100)",
+          200: "var(--color-gray-200)",
+          300: "var(--color-gray-300)",
+          400: "var(--color-gray-400)",
+          500: "var(--color-gray-500)",
+          600: "var(--color-gray-600)",
+          700: "var(--color-gray-700)",
+          800: "var(--color-gray-800)",
+          900: "var(--color-gray-900)",
+        },
+      },
+      spacing: {
+        1: "var(--space-1)",
+        2: "var(--space-2)",
+        3: "var(--space-3)",
+        4: "var(--space-4)",
+        5: "var(--space-5)",
+        6: "var(--space-6)",
+        8: "var(--space-8)",
+        10: "var(--space-10)",
+        12: "var(--space-12)",
+        16: "var(--space-16)",
+        20: "var(--space-20)",
+      },
+      borderRadius: {
+        sm: "var(--border-radius-sm)",
+        DEFAULT: "var(--border-radius-md)",
+        md: "var(--border-radius-md)",
+        lg: "var(--border-radius-lg)",
+        xl: "var(--border-radius-xl)",
+        full: "var(--border-radius-full)",
+      },
+      boxShadow: {
+        sm: "var(--shadow-sm)",
+        DEFAULT: "var(--shadow-md)",
+        md: "var(--shadow-md)",
+        lg: "var(--shadow-lg)",
+        xl: "var(--shadow-xl)",
+      },
+      fontSize: {
+        xs: "var(--font-size-xs)",
+        sm: "var(--font-size-sm)",
+        base: "var(--font-size-md)",
+        lg: "var(--font-size-lg)",
+        xl: "var(--font-size-xl)",
+        "2xl": "var(--font-size-2xl)",
+        "3xl": "var(--font-size-3xl)",
+        "4xl": "var(--font-size-4xl)",
+      },
+      fontFamily: {
+        sans: "var(--font-family-base)",
+      },
+      transitionDuration: {
+        fast: "var(--transition-fast)",
+        DEFAULT: "var(--transition-normal)",
+        slow: "var(--transition-slow)",
+      },
+      transitionTimingFunction: {
+        DEFAULT: "var(--transition-timing)",
+      },
+    },
+  },
+  plugins: [],
+};

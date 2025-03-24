@@ -44,6 +44,10 @@ export const UserMessage: Story = {
     children:
       "こんにちは！RAGチャットについて質問があります。どのように使用すればよいですか？",
     timestamp: "2023-03-24T19:12:00",
+    source: "",
+    onSourceClick: () => {},
+    errorMessage: "",
+    className: "",
   },
 };
 
@@ -53,6 +57,10 @@ export const SystemMessage: Story = {
     children:
       "こんにちは！RAG（Retrieval Augmented Generation）チャットへようこそ。このアプリケーションでは、あなたの質問に対して、データベースから関連情報を検索し、それを基に回答を生成します。\n\n質問を入力するだけで、システムが自動的に関連ドキュメントを検索し、その情報を使って回答します。特定のトピックや詳細な質問にも対応できますので、お気軽にお試しください。",
     timestamp: "2023-03-24T19:12:15",
+    source: "",
+    onSourceClick: () => {},
+    errorMessage: "",
+    className: "",
   },
 };
 
@@ -63,6 +71,9 @@ export const ReferenceMessage: Story = {
       "RAGは検索拡張生成（Retrieval Augmented Generation）の略で、大規模言語モデルの回答生成能力と、外部知識源からの情報検索を組み合わせた手法です。",
     source: "Technical Paper: RAG Overview 2023",
     timestamp: "2023-03-24T19:12:30",
+    onSourceClick: () => {},
+    errorMessage: "",
+    className: "",
   },
 };
 
@@ -72,6 +83,10 @@ export const LoadingState: Story = {
     state: ChatBubble.STATES.LOADING,
     children: "回答を生成しています",
     timestamp: "2023-03-24T19:12:45",
+    source: "",
+    onSourceClick: () => {},
+    errorMessage: "",
+    className: "",
   },
 };
 
@@ -83,6 +98,9 @@ export const ErrorState: Story = {
     errorMessage:
       "サーバーに接続できません。ネットワーク接続を確認してください。",
     timestamp: "2023-03-24T19:13:00",
+    source: "",
+    onSourceClick: () => {},
+    className: "",
   },
 };
 
@@ -102,6 +120,10 @@ export const Conversation: Story = {
       <ChatBubble
         variant={ChatBubble.VARIANTS.USER}
         timestamp="2023-03-24T19:12:00"
+        source=""
+        onSourceClick={() => {}}
+        errorMessage=""
+        className=""
       >
         RAGとは何ですか？
       </ChatBubble>
@@ -109,6 +131,10 @@ export const Conversation: Story = {
       <ChatBubble
         variant={ChatBubble.VARIANTS.SYSTEM}
         timestamp="2023-03-24T19:12:15"
+        source=""
+        onSourceClick={() => {}}
+        errorMessage=""
+        className=""
       >
         RAG（Retrieval Augmented
         Generation）は、情報検索と言語生成を組み合わせた技術です。質問に対して、まず関連する情報をデータベースから検索し、その結果を基に回答を生成します。これにより、最新の情報や特定のドメイン知識を含んだ正確な回答が可能になります。
@@ -117,6 +143,10 @@ export const Conversation: Story = {
       <ChatBubble
         variant={ChatBubble.VARIANTS.USER}
         timestamp="2023-03-24T19:12:30"
+        source=""
+        onSourceClick={() => {}}
+        errorMessage=""
+        className=""
       >
         RAGの主な利点は何ですか？
       </ChatBubble>
@@ -124,6 +154,10 @@ export const Conversation: Story = {
       <ChatBubble
         variant={ChatBubble.VARIANTS.SYSTEM}
         timestamp="2023-03-24T19:12:45"
+        source=""
+        onSourceClick={() => {}}
+        errorMessage=""
+        className=""
       >
         RAGの主な利点は以下の通りです： 1.
         最新情報へのアクセス：事前学習済みモデルの知識カットオフ後の情報も提供できます
@@ -136,6 +170,10 @@ export const Conversation: Story = {
       <ChatBubble
         variant={ChatBubble.VARIANTS.USER}
         timestamp="2023-03-24T19:13:00"
+        source=""
+        onSourceClick={() => {}}
+        errorMessage=""
+        className=""
       >
         このアプリケーションではどのようなデータベースを使用していますか？
       </ChatBubble>
@@ -144,6 +182,10 @@ export const Conversation: Story = {
         variant={ChatBubble.VARIANTS.SYSTEM}
         state={ChatBubble.STATES.LOADING}
         timestamp="2023-03-24T19:13:15"
+        source=""
+        onSourceClick={() => {}}
+        errorMessage=""
+        className=""
       >
         回答を生成しています
       </ChatBubble>
@@ -169,6 +211,10 @@ export const DetailedConversation: Story = {
       <ChatBubble
         variant={ChatBubble.VARIANTS.SYSTEM}
         timestamp="2023-03-24T10:00:00"
+        source=""
+        onSourceClick={() => {}}
+        errorMessage=""
+        className=""
       >
         こんにちは！RAG対応のAIアシスタントです。どのようなご質問にもお答えします。何かお手伝いできることはありますか？
       </ChatBubble>
@@ -176,6 +222,10 @@ export const DetailedConversation: Story = {
       <ChatBubble
         variant={ChatBubble.VARIANTS.USER}
         timestamp="2023-03-24T10:01:12"
+        source=""
+        onSourceClick={() => {}}
+        errorMessage=""
+        className=""
       >
         RAGとは何ですか？詳しく教えてください。
       </ChatBubble>
@@ -183,6 +233,10 @@ export const DetailedConversation: Story = {
       <ChatBubble
         variant={ChatBubble.VARIANTS.SYSTEM}
         timestamp="2023-03-24T10:01:45"
+        source=""
+        onSourceClick={() => {}}
+        errorMessage=""
+        className=""
       >
         RAG（Retrieval Augmented
         Generation）は、AIの応答生成能力と外部知識源からの情報検索を組み合わせた手法です。
@@ -196,6 +250,9 @@ export const DetailedConversation: Story = {
         variant={ChatBubble.VARIANTS.REFERENCE}
         timestamp="2023-03-24T10:01:46"
         source="RAG技術解説書 2023年版"
+        onSourceClick={() => {}}
+        errorMessage=""
+        className=""
       >
         RAG（検索拡張生成）は、大規模言語モデルに外部知識を動的に提供するアーキテクチャであり、回答の正確性と信頼性を向上させる手法として広く採用されています。
       </ChatBubble>
@@ -203,6 +260,10 @@ export const DetailedConversation: Story = {
       <ChatBubble
         variant={ChatBubble.VARIANTS.USER}
         timestamp="2023-03-24T10:02:30"
+        source=""
+        onSourceClick={() => {}}
+        errorMessage=""
+        className=""
       >
         なるほど。RAGと通常のAIチャットの違いは何ですか？
       </ChatBubble>
@@ -210,6 +271,10 @@ export const DetailedConversation: Story = {
       <ChatBubble
         variant={ChatBubble.VARIANTS.SYSTEM}
         timestamp="2023-03-24T10:03:15"
+        source=""
+        onSourceClick={() => {}}
+        errorMessage=""
+        className=""
       >
         RAGと通常のAIチャット（従来のLLMベースのチャット）の主な違いは次のとおりです：
         【情報の新しさ】 •
@@ -226,6 +291,10 @@ export const DetailedConversation: Story = {
       <ChatBubble
         variant={ChatBubble.VARIANTS.USER}
         timestamp="2023-03-24T10:04:00"
+        source=""
+        onSourceClick={() => {}}
+        errorMessage=""
+        className=""
       >
         RAGを実装するにはどうすればいいですか？必要な技術スタックを教えてください。
       </ChatBubble>
@@ -233,6 +302,10 @@ export const DetailedConversation: Story = {
       <ChatBubble
         variant={ChatBubble.VARIANTS.SYSTEM}
         timestamp="2023-03-24T10:04:45"
+        source=""
+        onSourceClick={() => {}}
+        errorMessage=""
+        className=""
       >
         RAGを実装するための基本的な技術スタックとステップは以下の通りです：
         【必要なコンポーネント】 1. 言語モデル（LLM） • OpenAI GPT、Anthropic
@@ -258,6 +331,10 @@ export const DetailedConversation: Story = {
       <ChatBubble
         variant={ChatBubble.VARIANTS.USER}
         timestamp="2023-03-24T10:05:30"
+        source=""
+        onSourceClick={() => {}}
+        errorMessage=""
+        className=""
       >
         素晴らしい説明をありがとう。RAGの実際の応用例にはどのようなものがありますか？
       </ChatBubble>
@@ -266,6 +343,10 @@ export const DetailedConversation: Story = {
         variant={ChatBubble.VARIANTS.SYSTEM}
         state={ChatBubble.STATES.LOADING}
         timestamp="2023-03-24T10:05:45"
+        source=""
+        onSourceClick={() => {}}
+        errorMessage=""
+        className=""
       >
         回答を生成しています
       </ChatBubble>
@@ -279,5 +360,9 @@ export const FormattedContent: Story = {
     children:
       "# RAGアーキテクチャの概要\n\n## 主要コンポーネント\n\n- **ドキュメントインデックス**: ベクターデータベースに保存された文書\n- **検索エンジン**: 意味的類似性に基づいてドキュメントを検索\n- **言語モデル**: 検索結果を利用して回答を生成\n\n```javascript\nasync function processQuery(query) {\n  // 1. ユーザークエリをベクトル化\n  const queryEmbedding = await embedText(query);\n  \n  // 2. 類似ドキュメントを検索\n  const relevantDocs = await vectorDb.similaritySearch(queryEmbedding);\n  \n  // 3. コンテキストと共に言語モデルに送信\n  const response = await llm.generate(query, relevantDocs);\n  \n  return response;\n}\n```\n\nRAGシステムの効果は、ドキュメントの品質と検索アルゴリズムの精度に大きく依存します。",
     timestamp: "2023-03-24T10:06:30",
+    source: "",
+    onSourceClick: () => {},
+    errorMessage: "",
+    className: "",
   },
 };

@@ -18,11 +18,7 @@ const meta = {
       control: "text",
       description: "プレースホルダーテキスト",
     },
-    helperText: {
-      control: "text",
-      description: "補助テキスト",
-    },
-    errorText: {
+    error: {
       control: "text",
       description: "エラーテキスト",
     },
@@ -42,10 +38,6 @@ const meta = {
     value: {
       control: "text",
       description: "入力値",
-    },
-    fullWidth: {
-      control: "boolean",
-      description: "親要素の幅いっぱいに広がるかどうか",
     },
     onChange: { action: "changed" },
     onFocus: { action: "focused" },
@@ -67,7 +59,6 @@ export const WithHelperText: Story = {
   args: {
     label: "メールアドレス",
     placeholder: "example@email.com",
-    helperText: "業務用のメールアドレスを入力してください",
     type: "email",
   },
 };
@@ -76,7 +67,7 @@ export const WithError: Story = {
   args: {
     label: "パスワード",
     placeholder: "パスワードを入力",
-    errorText: "パスワードは8文字以上必要です",
+    error: "パスワードは8文字以上必要です",
     type: "password",
   },
 };
@@ -101,7 +92,7 @@ export const FullWidth: Story = {
   args: {
     label: "コメント",
     placeholder: "コメントを入力してください",
-    fullWidth: true,
+    className: "w-full",
   },
   parameters: {
     layout: "padded",
@@ -122,16 +113,12 @@ export const Variants: Story = {
 
       <Input label="必須入力" placeholder="必須フィールド" required />
 
-      <Input
-        label="ヘルパーテキスト付き"
-        placeholder="入力してください"
-        helperText="追加情報はこちら"
-      />
+      <Input label="ヘルパーテキスト付き" placeholder="入力してください" />
 
       <Input
         label="エラー状態"
         value="無効な入力"
-        errorText="このフィールドは無効です"
+        error="このフィールドは無効です"
       />
 
       <Input label="無効状態" value="編集不可" disabled />

@@ -57,7 +57,7 @@ const CardContainer = styled.div<{
 }>`
   background-color: var(--color-white);
   border-radius: var(--border-radius-md);
-  padding: var(--card-padding);
+  padding: var(--space-3);
   overflow: hidden;
 
   /* バリアントスタイル */
@@ -73,7 +73,7 @@ const CardContainer = styled.div<{
 `;
 
 const CardHeader = styled.div`
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-2);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -81,7 +81,7 @@ const CardHeader = styled.div`
 
 const CardTitle = styled.h3`
   margin: 0;
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-md);
   font-weight: var(--font-weight-semibold);
   color: var(--color-gray-900);
 `;
@@ -90,7 +90,7 @@ const CardSubtitle = styled.p`
   margin: 0;
   font-size: var(--font-size-sm);
   color: var(--color-gray-600);
-  margin-top: var(--space-1);
+  margin-top: var(--space-0-5);
 `;
 
 const CardContent = styled.div`
@@ -98,7 +98,7 @@ const CardContent = styled.div`
 `;
 
 const CardFooter = styled.div`
-  margin-top: var(--space-3);
+  margin-top: var(--space-2);
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -106,12 +106,11 @@ const CardFooter = styled.div`
 `;
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
-  children: ReactNode;
+  children: ReactNode | null;
   variant?: CardVariant;
-  title?: ReactNode;
-  subtitle?: ReactNode;
-  headerActions?: ReactNode;
-  footer?: ReactNode;
+  subtitle?: ReactNode | string | null;
+  headerActions?: ReactNode | null;
+  footer?: ReactNode | null;
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
   selected?: boolean;
   className?: string;

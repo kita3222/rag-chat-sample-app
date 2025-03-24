@@ -17,12 +17,12 @@ type VariantType = (typeof VARIANTS)[keyof typeof VARIANTS];
 type SizeType = (typeof SIZES)[keyof typeof SIZES];
 
 interface SizeStyleProps {
-  size: SizeType;
+  inputSize: SizeType;
 }
 
 // サイズに基づくスタイル
-const getSizeStyles = (size: SizeType) => {
-  switch (size) {
+const getSizeStyles = (inputSize: SizeType) => {
+  switch (inputSize) {
     case SIZES.SMALL:
       return css`
         height: 32px;
@@ -53,7 +53,7 @@ const InputWrapper = styled.div`
 interface InputFieldProps {
   hasError?: boolean;
   success?: boolean;
-  size: SizeType;
+  inputSize: SizeType;
   hasLeftIcon?: boolean;
   hasRightIcon?: boolean;
 }
@@ -69,7 +69,7 @@ const InputField = styled.input<InputFieldProps>`
   outline: none;
 
   /* サイズスタイル */
-  ${(props) => getSizeStyles(props.size)}
+  ${(props) => getSizeStyles(props.inputSize)}
 
   /* 状態スタイル */
   ${(props) =>
@@ -170,7 +170,7 @@ export interface InputProps
   onFocus?: (e: FocusEvent<HTMLInputElement>) => void;
   onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
   disabled?: boolean;
-  size?: SizeType;
+  inputSize?: SizeType;
   error?: string;
   success?: boolean;
   label?: string;
@@ -180,6 +180,14 @@ export interface InputProps
   onRightIconClick?: () => void;
   className?: string;
 }
+
+// Inputコンポーネントの型にVARIANTSとSIZESプロパティを追加
+type InputComponent = React.ForwardRefExoticComponent<
+  InputProps & React.RefAttributes<HTMLInputElement>
+> & {
+  VARIANTS: typeof VARIANTS;
+  SIZES: typeof SIZES;
+};
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
   (
@@ -193,7 +201,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       onFocus,
       onBlur,
       disabled = false,
-      size = SIZES.MEDIUM,
+      inputSize = SIZES.MEDIUM,
       error,
       success = false,
       label,
@@ -254,7 +262,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             onFocus={onFocus}
             onBlur={onBlur}
             disabled={disabled}
-            size={size}
+            inputSize={inputSize}
             hasError={!!error}
             success={success}
             hasLeftIcon={!!leftIcon}
@@ -278,7 +286,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       </div>
     );
   }
-);
+) as InputComponent; // InputComponentとして型アサーション
 
 Input.displayName = "Input";
 
