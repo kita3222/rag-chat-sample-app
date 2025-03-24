@@ -1,9 +1,9 @@
 :root {
   /* カラー */
-  /* プライマリーカラー */
-  --color-primary: #f4b321;
-  --color-primary-light: #ffca58;
-  --color-primary-dark: #d99b0d;
+  /* プライマリーカラー - より優しい色合いに調整 */
+  --color-primary: #f8c552; /* 元の#f4b321より少し明るく、彩度を下げる */
+  --color-primary-light: #fad87b; /* より明るく柔らかい印象に */
+  --color-primary-dark: #e0aa32; /* 暗い色も少し明るく調整 */
 
   /* セカンダリーカラー */
   --color-secondary: #5b63a5;
@@ -29,10 +29,10 @@
   --color-error: #e34935;
   --color-info: #4c9aff;
 
-  /* 透明度バリエーション */
-  --color-primary-10: rgba(244, 179, 33, 0.1);
-  --color-primary-20: rgba(244, 179, 33, 0.2);
-  --color-primary-50: rgba(244, 179, 33, 0.5);
+  /* 透明度バリエーション - 透明度を少し上げて柔らかく */
+  --color-primary-10: rgba(248, 197, 82, 0.08); /* 透明度を微調整 */
+  --color-primary-20: rgba(248, 197, 82, 0.15); /* 透明度を微調整 */
+  --color-primary-50: rgba(248, 197, 82, 0.4); /* 透明度を微調整 */
 
   /* タイポグラフィ */
   /* フォントファミリー */
