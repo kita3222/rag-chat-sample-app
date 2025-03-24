@@ -179,7 +179,7 @@ export default function ChatPageStory() {
     >
       <AppLayout>
         <ChatContainer>
-          <SidebarContainer variant={Card.VARIANTS.FLAT}>
+          <SidebarContainer variant={Card.VARIANTS.DEFAULT}>
             <SidebarHeader>
               <Button onClick={() => {}} fullWidth size={Button.SIZES.MEDIUM}>
                 新しい会話
@@ -209,9 +209,10 @@ export default function ChatPageStory() {
           <ChatPanel>
             <ChatInterface
               title="Almondo RAG アシスタント"
-              initialMessages={mockMessages as any}
+              initialMessages={mockMessages}
               onNewMessage={() => {}}
               onReset={() => {}}
+              onSettingsClick={() => {}}
             />
           </ChatPanel>
         </ChatContainer>

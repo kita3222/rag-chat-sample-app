@@ -3,14 +3,14 @@
 
 :root {
   /* ブランドカラー */
-  --color-primary: #f4b321;
-  --color-primary-5: rgba(244, 179, 33, 0.05);
-  --color-primary-10: rgba(244, 179, 33, 0.1);
-  --color-primary-20: rgba(244, 179, 33, 0.2);
-  --color-primary-40: rgba(244, 179, 33, 0.4);
-  --color-primary-60: rgba(244, 179, 33, 0.6);
-  --color-primary-light: #fbd980;
-  --color-primary-dark: #d99200;
+  --color-primary: #f8c552;
+  --color-primary-5: rgba(248, 197, 82, 0.05);
+  --color-primary-10: rgba(248, 197, 82, 0.1);
+  --color-primary-20: rgba(248, 197, 82, 0.2);
+  --color-primary-40: rgba(248, 197, 82, 0.4);
+  --color-primary-60: rgba(248, 197, 82, 0.6);
+  --color-primary-light: #fad87b;
+  --color-primary-dark: #e0aa32;
 
   /* セカンダリカラー */
   --color-secondary: #5b63a5;
@@ -21,47 +21,48 @@
 
   /* グレースケール */
   --color-white: #ffffff;
-  --color-gray-50: #f9fafb;
-  --color-gray-100: #f3f4f6;
-  --color-gray-200: #e5e7eb;
-  --color-gray-300: #d1d5db;
-  --color-gray-400: #9ca3af;
-  --color-gray-500: #6b7280;
-  --color-gray-600: #4b5563;
-  --color-gray-700: #374151;
-  --color-gray-800: #1f2937;
-  --color-gray-900: #111827;
-  --color-black: #000000;
+  --color-gray-50: #fafbfc;
+  --color-gray-100: #f7f9fa;
+  --color-gray-200: #ebeef1;
+  --color-gray-300: #dce0e5;
+  --color-gray-400: #bcc2cc;
+  --color-gray-500: #9da5b4;
+  --color-gray-600: #7d8799;
+  --color-gray-700: #606a7b;
+  --color-gray-800: #475060;
+  --color-gray-900: #343c4a;
+  --color-black: #1f242e;
 
   /* システムカラー */
-  --color-success: #10b981;
-  --color-success-10: rgba(16, 185, 129, 0.1);
-  --color-success-light: #a7f3d0;
-  --color-warning: #f59e0b;
-  --color-warning-10: rgba(245, 158, 11, 0.1);
-  --color-warning-light: #fde68a;
+  --color-success: #36b37e;
+  --color-success-10: rgba(54, 179, 126, 0.1);
+  --color-success-light: rgba(54, 179, 126, 0.15);
+  --color-warning: #f4b321;
+  --color-warning-10: rgba(244, 179, 33, 0.1);
+  --color-warning-light: rgba(244, 179, 33, 0.15);
   --color-error: #e34935;
   --color-error-10: rgba(227, 73, 53, 0.1);
-  --color-error-light: #fca5a5;
-  --color-info: #3b82f6;
-  --color-info-10: rgba(59, 130, 246, 0.1);
-  --color-info-light: #bfdbfe;
+  --color-error-light: rgba(227, 73, 53, 0.15);
+  --color-info: #4c9aff;
+  --color-info-10: rgba(76, 154, 255, 0.1);
+  --color-info-light: rgba(76, 154, 255, 0.15);
 
   /* タイポグラフィ */
   --font-family-base: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
+  --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
   --font-size-xs: 0.75rem; /* 12px */
-  --font-size-sm: 0.875rem; /* 14px */
-  --font-size-md: 1rem; /* 16px */
-  --font-size-lg: 1.125rem; /* 18px */
-  --font-size-xl: 1.25rem; /* 20px */
-  --font-size-2xl: 1.5rem; /* 24px */
-  --font-size-3xl: 1.875rem; /* 30px */
-  --font-size-4xl: 2.25rem; /* 36px */
+  --font-size-sm: 0.8125rem; /* 13px */
+  --font-size-md: 0.875rem; /* 14px */
+  --font-size-lg: 0.9375rem; /* 15px */
+  --font-size-xl: 1.125rem; /* 18px */
+  --font-size-2xl: 1.25rem; /* 20px */
+  --font-size-3xl: 1.5rem; /* 24px */
+  --font-size-4xl: 1.875rem; /* 30px */
 
   --line-height-tight: 1.25;
   --line-height-base: 1.5;
@@ -72,16 +73,16 @@
   --space-2: 0.5rem; /* 8px */
   --space-3: 0.75rem; /* 12px */
   --space-4: 1rem; /* 16px */
-  --space-5: 1.25rem; /* 20px */
-  --space-6: 1.5rem; /* 24px */
-  --space-8: 2rem; /* 32px */
-  --space-10: 2.5rem; /* 40px */
-  --space-12: 3rem; /* 48px */
-  --space-16: 4rem; /* 64px */
-  --space-20: 5rem; /* 80px */
+  --space-5: 1.5rem; /* 24px */
+  --space-6: 2rem; /* 32px */
+  --space-8: 3rem; /* 48px */
+  --space-10: 4rem; /* 64px */
+  --space-12: 5rem; /* 80px */
+  --space-16: 6rem; /* 96px */
+  --space-20: 8rem; /* 128px */
 
   /* ボーダー */
-  --border-radius-sm: 0.125rem; /* 2px */
+  --border-radius-sm: 0.25rem; /* 4px */
   --border-radius-md: 0.375rem; /* 6px */
   --border-radius-lg: 0.5rem; /* 8px */
   --border-radius-xl: 0.75rem; /* 12px */
@@ -112,14 +113,15 @@
 
 /* ダークモードのカラー変数 */
 [data-theme="dark"] {
-  --color-primary: #f4b321;
-  --color-primary-5: rgba(244, 179, 33, 0.05);
-  --color-primary-10: rgba(244, 179, 33, 0.1);
-  --color-primary-20: rgba(244, 179, 33, 0.2);
-  --color-primary-light: #fbd980;
-  --color-primary-dark: #d99200;
+  --color-primary: #f8c552;
+  --color-primary-5: rgba(248, 197, 82, 0.05);
+  --color-primary-10: rgba(248, 197, 82, 0.1);
+  --color-primary-20: rgba(248, 197, 82, 0.2);
+  --color-primary-light: #fad87b;
+  --color-primary-dark: #e0aa32;
 
-  --color-white: #121212;
+  /* ダークモードのグレースケール */
+  --color-white: #1a1a1a;
   --color-gray-50: #1a1a1a;
   --color-gray-100: #242424;
   --color-gray-200: #2e2e2e;

@@ -1,6 +1,6 @@
 :root {
   /* カラー */
-  /* プライマリーカラー - より優しい色合いに調整 */
+  /* プライマリーカラー - 元の黄色系に戻す */
   --color-primary: #f8c552; /* 元の#f4b321より少し明るく、彩度を下げる */
   --color-primary-light: #fad87b; /* より明るく柔らかい印象に */
   --color-primary-dark: #e0aa32; /* 暗い色も少し明るく調整 */
@@ -59,41 +59,41 @@
     Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif;
 
-  /* フォントサイズ - 全体的に小さく洗練された印象に */
+  /* フォントサイズ - より読みやすく整った印象に */
   --font-size-h1: 24px;
   --font-size-h2: 20px;
   --font-size-h3: 18px;
   --font-size-h4: 16px;
   --font-size-lg: 15px;
-  --font-size-md: 13px;
-  --font-size-sm: 12px;
-  --font-size-xs: 11px;
+  --font-size-md: 14px;
+  --font-size-sm: 13px;
+  --font-size-xs: 12px;
 
   /* 行高 */
   --line-height-heading: 1.25;
   --line-height-base: 1.5;
   --line-height-small: 1.4;
 
-  /* フォントウェイト - より繊細に */
+  /* フォントウェイト - ChatGPTと同様に */
   --font-weight-regular: 400;
-  --font-weight-medium: 450;
-  --font-weight-semibold: 550;
-  --font-weight-bold: 650;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
 
   /* スペーシング - よりゆとりを持たせる */
   --space-0-5: 2px;
   --space-1: 4px;
   --space-2: 8px;
-  --space-3: 16px;
-  --space-4: 24px;
-  --space-5: 32px;
-  --space-6: 40px;
-  --space-7: 48px;
-  --space-8: 56px;
-  --space-9: 72px;
-  --space-10: 96px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 40px;
+  --space-8: 48px;
+  --space-9: 64px;
+  --space-10: 80px;
 
-  /* コンポーネント固有 - ゆとりを持たせる */
+  /* コンポーネント固有 */
   --button-padding-h: var(--space-4);
   --button-padding-v: var(--space-2);
   --input-padding: var(--space-3);
@@ -110,19 +110,19 @@
   --message-group-spacing: var(--space-5);
   --message-padding: var(--space-3);
 
-  /* ボーダーラディウス - よりシャープかつ洗練された印象に */
+  /* ボーダーラディウス - ChatGPTと同様に控えめに */
   --border-radius-sm: 4px;
   --border-radius-md: 6px;
   --border-radius-lg: 8px;
   --border-radius-xl: 12px;
   --border-radius-full: 9999px;
 
-  /* ボーダー幅 - さらに細く繊細に */
-  --border-width-thin: 0.5px;
+  /* ボーダー幅 */
+  --border-width-thin: 1px;
   --border-width-medium: 1px;
-  --border-width-thick: 1.5px;
+  --border-width-thick: 2px;
 
-  /* シャドウ - より微細で繊細に */
+  /* シャドウ - より軽やかに */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.02), 0 1px 1px rgba(0, 0, 0, 0.03);
   --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0, 0, 0, 0.03);
   --shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.02), 0 2px 4px rgba(0, 0, 0, 0.03);
