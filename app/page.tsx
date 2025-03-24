@@ -1,5 +1,5 @@
 import React from "react";
-import ChatInterface from "./components/ChatInterface";
+import ChatInterface from "./features/rag-chat/components/ChatInterface";
 
 export default function Home() {
   return (
