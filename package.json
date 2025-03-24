@@ -15,11 +15,15 @@
     "@storybook/experimental-nextjs-vite": "^8.6.8",
     "@storybook/react": "^8.6.8",
     "@storybook/test": "^8.6.8",
+    "@types/node": "^22.13.13",
+    "@types/react": "^19.0.12",
+    "@types/react-dom": "^19.0.4",
     "@vitest/browser": "^3.0.9",
     "@vitest/coverage-v8": "^3.0.9",
     "playwright": "^1.51.1",
     "prop-types": "^15.8.1",
     "storybook": "^8.6.8",
+    "typescript": "^5.8.2",
     "vitest": "^3.0.9"
   },
   "scripts": {
@@ -29,5 +33,13 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@radix-ui/colors": "^3.0.0",
+    "@radix-ui/react-primitive": "^2.0.2",
+    "next": "^15.2.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "styled-components": "^6.1.16"
+  }
 }

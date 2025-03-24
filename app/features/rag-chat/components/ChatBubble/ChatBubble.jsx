@@ -100,12 +100,21 @@ const getStateStyles = (state) => {
   }
 };
 
+const BubbleWrapper = styled.div`
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  margin-bottom: var(--message-spacing, 16px);
+  flex-direction: ${(props) =>
+    props.variant === VARIANTS.USER ? "row-reverse" : "row"};
+  gap: 8px;
+`;
+
 const BubbleContainer = styled.div`
   position: relative;
   padding: var(--message-padding);
   max-width: 70%;
   word-wrap: break-word;
-  margin-bottom: var(--message-spacing, 16px);
   transition: all var(--transition-fast) var(--transition-timing);
 
   /* バリアントスタイル */
@@ -129,7 +138,11 @@ const MetaInfo = styled.div`
 `;
 
 const Timestamp = styled.span`
-  /* スタイリング */
+  font-size: var(--font-size-xs);
+  color: var(--color-gray-500);
+  align-self: flex-end;
+  white-space: nowrap;
+  padding-bottom: 8px;
 `;
 
 const SourceInfo = styled.div`
@@ -149,6 +162,39 @@ const ErrorInfo = styled.div`
   margin-top: var(--space-2);
 `;
 
+// 時間をフォーマットする関数
+const formatTime = (timeString) => {
+  try {
+    const date = new Date(timeString);
+    if (isNaN(date.getTime())) {
+      // 数値形式のタイムスタンプや "HH:MM:SS" 形式を処理
+      if (timeString.includes(":")) {
+        const [hours, minutes] = timeString.split(":");
+        const hour = parseInt(hours, 10);
+        const isPM = hour >= 12;
+        const formattedHour = hour % 12 || 12;
+        return `${isPM ? "午後" : "午前"} ${formattedHour
+          .toString()
+          .padStart(2, "0")}:${minutes}`;
+      }
+      // フォーマットできない場合はそのまま返す
+      return timeString;
+    }
+
+    // ISO形式のタイムスタンプを処理
+    const hours = date.getHours();
+    const isPM = hours >= 12;
+    const formattedHours = hours % 12 || 12;
+    const minutes = date.getMinutes();
+    return `${isPM ? "午後" : "午前"} ${formattedHours
+      .toString()
+      .padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
+  } catch (error) {
+    console.error("時間のフォーマットに失敗しました:", error);
+    return timeString;
+  }
+};
+
 const ChatBubble = ({
   children,
   variant = VARIANTS.SYSTEM,
@@ -160,29 +206,29 @@ const ChatBubble = ({
   className,
   ...props
 }) => {
+  const formattedTime = timestamp ? formatTime(timestamp) : null;
+
   return (
-    <BubbleContainer
-      variant={variant}
-      state={state}
-      className={className}
-      {...props}
-    >
-      <MessageContent>{children}</MessageContent>
+    <BubbleWrapper variant={variant}>
+      <BubbleContainer
+        variant={variant}
+        state={state}
+        className={className}
+        {...props}
+      >
+        <MessageContent>{children}</MessageContent>
 
-      {state === STATES.ERROR && errorMessage && (
-        <ErrorInfo>{errorMessage}</ErrorInfo>
-      )}
+        {state === STATES.ERROR && errorMessage && (
+          <ErrorInfo>{errorMessage}</ErrorInfo>
+        )}
 
-      {source && (
-        <SourceInfo onClick={onSourceClick}>出典: {source}</SourceInfo>
-      )}
+        {source && (
+          <SourceInfo onClick={onSourceClick}>出典: {source}</SourceInfo>
+        )}
+      </BubbleContainer>
 
-      {timestamp && (
-        <MetaInfo>
-          <Timestamp>{timestamp}</Timestamp>
-        </MetaInfo>
-      )}
-    </BubbleContainer>
+      {formattedTime && <Timestamp>{formattedTime}</Timestamp>}
+    </BubbleWrapper>
   );
 };
 

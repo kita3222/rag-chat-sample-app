@@ -174,7 +174,7 @@ const ChatHistory = ({ messages = [], isLoading = false, error = null }) => {
         <ChatBubble
           variant="SYSTEM"
           state="ERROR"
-          timestamp={new Date().toLocaleTimeString()}
+          timestamp={new Date().toISOString()}
           errorMessage={
             error.message ||
             "メッセージの送信中にエラーが発生しました。後でもう一度お試しください。"
@@ -200,7 +200,7 @@ const ChatHistory = ({ messages = [], isLoading = false, error = null }) => {
                 key={`message-${messageIndex}`}
                 variant={message.sender === "user" ? "USER" : "SYSTEM"}
                 state={message.state || "DEFAULT"}
-                timestamp={new Date(message.timestamp).toLocaleTimeString()}
+                timestamp={message.timestamp}
                 source={message.source}
                 errorMessage={message.errorMessage}
               >
@@ -215,7 +215,7 @@ const ChatHistory = ({ messages = [], isLoading = false, error = null }) => {
         <ChatBubble
           variant="SYSTEM"
           state="LOADING"
-          timestamp={new Date().toLocaleTimeString()}
+          timestamp={new Date().toISOString()}
         >
           回答を生成しています...
         </ChatBubble>

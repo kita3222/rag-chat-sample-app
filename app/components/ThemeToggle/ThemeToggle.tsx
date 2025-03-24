@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-const ToggleContainer = styled.button`
+interface ToggleContainerProps {
+  isDark: boolean;
+}
+
+const ToggleContainer = styled.button<ToggleContainerProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -38,19 +42,23 @@ const Icons = styled.div`
   }
 `;
 
-const SunIcon = styled.svg`
+interface IconProps {
+  isDark: boolean;
+}
+
+const SunIcon = styled.svg<IconProps>`
   color: ${({ isDark }) =>
     isDark ? "var(--color-gray-600)" : "var(--color-primary)"};
   transition: color 0.3s ease;
 `;
 
-const MoonIcon = styled.svg`
+const MoonIcon = styled.svg<IconProps>`
   color: ${({ isDark }) =>
     isDark ? "var(--color-white)" : "var(--color-gray-600)"};
   transition: color 0.3s ease;
 `;
 
-const ToggleThumb = styled.div`
+const ToggleThumb = styled.div<ToggleContainerProps>`
   position: absolute;
   top: 2px;
   left: ${({ isDark }) => (isDark ? "28px" : "2px")};
@@ -63,11 +71,28 @@ const ToggleThumb = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 `;
 
-const ThemeToggle = ({ onChange, initialTheme = "light" }) => {
-  const [isDark, setIsDark] = useState(initialTheme === "dark");
+export interface ThemeToggleProps {
+  onChange?: (theme: "light" | "dark") => void;
+  initialTheme?: "light" | "dark";
+  isDarkMode?: boolean;
+}
+
+const ThemeToggle: React.FC<ThemeToggleProps> = ({
+  onChange,
+  initialTheme = "light",
+  isDarkMode,
+}) => {
+  const [isDark, setIsDark] = useState(
+    isDarkMode !== undefined ? isDarkMode : initialTheme === "dark"
+  );
 
   // ユーザーの設定したテーマを保存
   useEffect(() => {
+    if (isDarkMode !== undefined) {
+      setIsDark(isDarkMode);
+      return;
+    }
+
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
       setIsDark(savedTheme === "dark");
@@ -78,10 +103,15 @@ const ThemeToggle = ({ onChange, initialTheme = "light" }) => {
       ).matches;
       setIsDark(prefersDark);
     }
-  }, []);
+  }, [isDarkMode]);
 
   // テーマの切り替え処理
   const toggleTheme = () => {
+    if (isDarkMode !== undefined && onChange) {
+      onChange(isDarkMode ? "light" : "dark");
+      return;
+    }
+
     const newIsDark = !isDark;
     setIsDark(newIsDark);
     localStorage.setItem("theme", newIsDark ? "dark" : "light");

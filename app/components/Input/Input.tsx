@@ -1,20 +1,27 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState, ChangeEvent, FocusEvent } from "react";
 import styled, { css } from "styled-components";
 
 const VARIANTS = {
   DEFAULT: "default",
   PASSWORD: "password",
   SEARCH: "search",
-};
+} as const;
 
 const SIZES = {
   SMALL: "small",
   MEDIUM: "medium",
   LARGE: "large",
-};
+} as const;
+
+type VariantType = (typeof VARIANTS)[keyof typeof VARIANTS];
+type SizeType = (typeof SIZES)[keyof typeof SIZES];
+
+interface SizeStyleProps {
+  size: SizeType;
+}
 
 // サイズに基づくスタイル
-const getSizeStyles = (size) => {
+const getSizeStyles = (size: SizeType) => {
   switch (size) {
     case SIZES.SMALL:
       return css`
@@ -43,7 +50,15 @@ const InputWrapper = styled.div`
   width: 100%;
 `;
 
-const InputField = styled.input`
+interface InputFieldProps {
+  hasError?: boolean;
+  success?: boolean;
+  size: SizeType;
+  hasLeftIcon?: boolean;
+  hasRightIcon?: boolean;
+}
+
+const InputField = styled.input<InputFieldProps>`
   width: 100%;
   border: var(--border-width-thin) solid var(--color-gray-300);
   border-radius: var(--border-radius-md);
@@ -114,7 +129,11 @@ const LeftIconWrapper = styled.div`
   justify-content: center;
 `;
 
-const RightIconWrapper = styled.div`
+interface RightIconWrapperProps {
+  clickable?: boolean;
+}
+
+const RightIconWrapper = styled.div<RightIconWrapperProps>`
   position: absolute;
   top: 50%;
   right: var(--space-3);
@@ -140,7 +159,29 @@ const Label = styled.label`
   margin-bottom: var(--space-1);
 `;
 
-const Input = forwardRef(
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  id?: string;
+  name?: string;
+  type?: string;
+  placeholder?: string;
+  value?: string;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  onFocus?: (e: FocusEvent<HTMLInputElement>) => void;
+  onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
+  disabled?: boolean;
+  size?: SizeType;
+  error?: string;
+  success?: boolean;
+  label?: string;
+  required?: boolean;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
+  onRightIconClick?: () => void;
+  className?: string;
+}
+
+const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
       id,
@@ -166,7 +207,7 @@ const Input = forwardRef(
     ref
   ) => {
     // パスワード表示切り替え用の状態管理（パスワードフィールドの場合）
-    const [showPassword, setShowPassword] = React.useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const isPasswordField = type === "password";
 
     // パスワード表示/非表示の切り替え処理

@@ -1,369 +1,191 @@
 # タイポグラフィシステム
 
-このドキュメントでは、デザインシステムのタイポグラフィシステムとその使用ルールを定義します。一貫性のあるテキスト表現と読みやすさを確保するため、このタイポグラフィシステムに従ってください。
+レイアウトとコンテンツの可読性を確保するためのタイポグラフィシステムの定義です。
 
-## 1. 基本原則
-
-- **階層性**: 明確な視覚的階層を通じて情報の重要度を伝える
-- **読みやすさ**: すべてのテキストは適切なサイズとコントラストで読みやすく表示する
-- **一貫性**: フォントファミリー、スタイル、およびスケールを一貫して適用する
-- **アクセシビリティ**: WCAG AA レベルのアクセシビリティ基準を満たす
-- **レスポンシブ**: さまざまな画面サイズに適応するスケーリングを提供する
-
-## 2. フォントファミリー
-
-### 2.1 プライマリフォント
-
-基本的なインターフェーステキストに使用します。
-
-| フォント名   | 用途                  | フォールバック |
-| ------------ | --------------------- | -------------- |
-| Noto Sans JP | 見出し、本文、UI 要素 | sans-serif     |
-
-### 2.2 セカンダリフォント
-
-特殊な目的や視覚的な区別が必要な場合に使用します。
-
-| フォント名    | 用途                           | フォールバック |
-| ------------- | ------------------------------ | -------------- |
-| Noto Serif JP | 引用、記事タイトル、特別な強調 | serif          |
-
-### 2.3 モノスペースフォント
-
-コード表示やテクニカルな情報に使用します。
-
-| フォント名  | 用途                       | フォールバック |
-| ----------- | -------------------------- | -------------- |
-| Roboto Mono | コードブロック、技術データ | monospace      |
-
-### 2.4 フォントの読み込み
+## フォントファミリー
 
 ```css
-/* Google Fontsからの読み込み例 */
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&family=Roboto+Mono:wght@400;500&display=swap");
+--font-family-base: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  "Helvetica Neue", Arial, sans-serif;
 ```
 
-## 3. タイプスケール
+システム全体で使用する主要なフォントは Inter（Google Fonts）です。これはシンプルで読みやすく、異なるウェイトやスタイルが豊富に揃っている現代的なサンセリフフォントです。Inter が利用できない場合は、各 OS に最適化されたシステムフォントにフォールバックします。
 
-情報の階層を明確にするため、以下のタイプスケールを使用します。各スケールは、相対サイズ（rem）で定義されます。
-
-| 名前          | サイズ(rem)  | ウェイト | 行間 | 用途                         |
-| ------------- | ------------ | -------- | ---- | ---------------------------- |
-| DisplayLarge  | 3.815 (61px) | 700      | 1.2  | 大見出し、ヒーローセクション |
-| DisplayMedium | 3.052 (49px) | 700      | 1.2  | 主要見出し                   |
-| DisplaySmall  | 2.441 (39px) | 700      | 1.2  | 副見出し                     |
-| HeadingLarge  | 1.953 (31px) | 700      | 1.3  | セクション見出し             |
-| HeadingMedium | 1.563 (25px) | 700      | 1.3  | サブセクション見出し         |
-| HeadingSmall  | 1.25 (20px)  | 700      | 1.3  | 小見出し                     |
-| BodyLarge     | 1.125 (18px) | 400      | 1.5  | 強調された本文               |
-| BodyMedium    | 1 (16px)     | 400      | 1.5  | 標準本文テキスト             |
-| BodySmall     | 0.875 (14px) | 400      | 1.5  | 補足テキスト                 |
-| CaptionLarge  | 0.75 (12px)  | 400      | 1.4  | キャプション、ラベル         |
-| CaptionSmall  | 0.625 (10px) | 400      | 1.4  | 法的表記、著作権表示         |
-
-## 4. フォントウェイト
-
-視覚的な強調と階層を確立するために、以下のフォントウェイトを使用します。
-
-| ウェイト | 数値 | 用途                         |
-| -------- | ---- | ---------------------------- |
-| Regular  | 400  | 本文テキスト、通常の表示     |
-| Medium   | 500  | 軽い強調、ナビゲーション項目 |
-| Bold     | 700  | 見出し、強調、ボタンテキスト |
-
-## 5. 行の高さ（line-height）
-
-読みやすさを確保するために適切な行の高さを使用します。
-
-| 用途         | 倍率 | 例                                    |
-| ------------ | ---- | ------------------------------------- |
-| 見出し（小） | 1.3  | 20px のテキストには 26px の行の高さ   |
-| 見出し（大） | 1.2  | 40px のテキストには 48px の行の高さ   |
-| 本文テキスト | 1.5  | 16px のテキストには 24px の行の高さ   |
-| 密集テキスト | 1.4  | 14px のテキストには 19.6px の行の高さ |
-
-## 6. レターとワードスペーシング
-
-| 用途       | レタースペーシング | ワードスペーシング |
-| ---------- | ------------------ | ------------------ |
-| 見出し     | -0.5px             | 通常               |
-| 大見出し   | -1px               | 通常               |
-| 本文       | 0                  | 通常               |
-| ボタン     | 0.5px              | 0.1em              |
-| 全て大文字 | 1px                | 0.05em             |
-
-## 7. テキストアライメント
-
-| アライメント | 用途                                   |
-| ------------ | -------------------------------------- |
-| 左揃え       | 基本アライメント、長文の本文テキスト   |
-| 中央揃え     | 見出し、カード、短いテキストブロック   |
-| 右揃え       | 数値データ、テーブルの数値列           |
-| 両端揃え     | 新聞スタイルのコンテンツ（慎重に使用） |
-
-## 8. タイポグラフィの使用パターン
-
-### 8.1 ページタイトル
+## フォントウェイト
 
 ```css
-.page-title {
-  font-family: "Noto Sans JP", sans-serif;
-  font-size: 2.441rem; /* DisplaySmall */
-  font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 1.5rem;
-}
+--font-weight-regular: 400;
+--font-weight-medium: 500;
+--font-weight-bold: 700;
 ```
 
-### 8.2 セクション見出し
+| 変数名                  | 値    | 用途                               |
+| ----------------------- | ----- | ---------------------------------- |
+| `--font-weight-regular` | `400` | 本文テキスト、通常の表示           |
+| `--font-weight-medium`  | `500` | 小見出し、やや強調したいテキスト   |
+| `--font-weight-bold`    | `700` | 見出し、強調テキスト、ボタンラベル |
+
+## フォントサイズ
 
 ```css
-.section-heading {
-  font-family: "Noto Sans JP", sans-serif;
-  font-size: 1.953rem; /* HeadingLarge */
-  font-weight: 700;
-  line-height: 1.3;
-  margin-top: 2rem;
+--font-size-xs: 0.75rem; /* 12px */
+--font-size-sm: 0.875rem; /* 14px */
+--font-size-md: 1rem; /* 16px */
+--font-size-lg: 1.125rem; /* 18px */
+--font-size-xl: 1.25rem; /* 20px */
+--font-size-2xl: 1.5rem; /* 24px */
+--font-size-3xl: 1.875rem; /* 30px */
+--font-size-4xl: 2.25rem; /* 36px */
+```
+
+| 変数名            | 値         | ピクセル相当 | 用途                               |
+| ----------------- | ---------- | ------------ | ---------------------------------- |
+| `--font-size-xs`  | `0.75rem`  | 12px         | 補足情報、メタデータ、フッター     |
+| `--font-size-sm`  | `0.875rem` | 14px         | セカンダリテキスト、ラベル、タグ   |
+| `--font-size-md`  | `1rem`     | 16px         | 本文テキスト（標準サイズ）、ボタン |
+| `--font-size-lg`  | `1.125rem` | 18px         | サブ見出し、強調テキスト           |
+| `--font-size-xl`  | `1.25rem`  | 20px         | 小見出し                           |
+| `--font-size-2xl` | `1.5rem`   | 24px         | セクション見出し                   |
+| `--font-size-3xl` | `1.875rem` | 30px         | ページ見出し                       |
+| `--font-size-4xl` | `2.25rem`  | 36px         | 大見出し、ヒーローテキスト         |
+
+## 行の高さ
+
+```css
+--line-height-tight: 1.25;
+--line-height-base: 1.5;
+--line-height-loose: 1.75;
+```
+
+| 変数名                | 値     | 用途                                 |
+| --------------------- | ------ | ------------------------------------ |
+| `--line-height-tight` | `1.25` | 見出し、短いテキストブロック         |
+| `--line-height-base`  | `1.5`  | 本文テキスト（標準）                 |
+| `--line-height-loose` | `1.75` | 長文テキスト、読みやすさが必要な場所 |
+
+## タイポグラフィスケール
+
+異なるテキスト要素のための一貫したスケール定義です。CSS クラスまたはコンポーネントとして実装されます。
+
+### 見出し
+
+```css
+h1,
+.h1 {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
   margin-bottom: 1rem;
 }
-```
 
-### 8.3 本文テキスト
+h2,
+.h2 {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  margin-bottom: 0.875rem;
+}
 
-```css
-.body-text {
-  font-family: "Noto Sans JP", sans-serif;
-  font-size: 1rem; /* BodyMedium */
-  font-weight: 400;
-  line-height: 1.5;
-  margin-bottom: 1rem;
+h3,
+.h3 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  margin-bottom: 0.75rem;
+}
+
+h4,
+.h4 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+  margin-bottom: 0.5rem;
+}
+
+h5,
+.h5 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+  margin-bottom: 0.5rem;
+}
+
+h6,
+.h6 {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+  margin-bottom: 0.5rem;
 }
 ```
 
-### 8.4 ボタンテキスト
+### ボディテキスト
 
 ```css
-.button-text {
-  font-family: "Noto Sans JP", sans-serif;
-  font-size: 0.875rem; /* BodySmall */
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  text-transform: none;
+.text-base {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-base);
+}
+
+.text-sm {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-base);
+}
+
+.text-xs {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-base);
+}
+
+.text-lg {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-base);
+}
+
+.text-xl {
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-base);
 }
 ```
 
-## 9. レスポンシブタイポグラフィ
+## レスポンシブ対応
 
-画面サイズに応じたタイポグラフィの調整を行います。
-
-### 9.1 基本アプローチ
+異なるビューポートサイズでの可読性を確保するため、特定のブレークポイントでフォントサイズを調整します。
 
 ```css
-html {
-  font-size: 16px;
-}
-
 @media (max-width: 768px) {
-  html {
-    font-size: 15px;
+  :root {
+    /* モバイルでは基本サイズを少し小さく調整 */
+    --font-size-4xl: 2rem; /* 32px */
+    --font-size-3xl: 1.75rem; /* 28px */
+    --font-size-2xl: 1.375rem; /* 22px */
+    --font-size-xl: 1.125rem; /* 18px */
   }
 }
-
-@media (max-width: 480px) {
-  html {
-    font-size: 14px;
-  }
-}
 ```
 
-### 9.2 Fluid Typography アプローチ（高度な実装）
+## アクセシビリティガイドライン
 
-ビューポートの幅に基づいてフォントサイズを連続的に調整します。
+1. **最小フォントサイズ**: 本文テキストは常に最低 16px（1rem）を維持
+2. **行の長さ**: テキストブロックの幅は 1 行あたり 45〜75 文字に制限
+3. **コントラスト**: テキストと背景のコントラスト比は WCAG AA レベル（4.5:1）以上を確保
+4. **文字間隔**: 必要に応じて`letter-spacing`プロパティを使用して可読性を向上
 
-```css
-:root {
-  --fluid-min-width: 320;
-  --fluid-max-width: 1200;
-  --fluid-min-size: 14;
-  --fluid-max-size: 16;
-  --fluid-calc: calc(
-    (var(--fluid-min-size) * 1px) + (
-        var(--fluid-max-size) - var(--fluid-min-size)
-      ) * (100vw - (var(--fluid-min-width) * 1px)) / (var(--fluid-max-width) -
-          var(--fluid-min-width))
-  );
-
-  font-size: var(--fluid-calc);
-}
-```
-
-## 10. アクセシビリティに関する考慮事項
-
-### 10.1 テキストサイズ
-
-- 本文テキストは少なくとも 16px（1rem）以上
-- インタラクティブ要素（ボタンなど）のテキストは少なくとも 14px（0.875rem）以上
-
-### 10.2 コントラスト
-
-- 本文テキストと背景のコントラスト比は 4.5:1 以上
-- 大きなテキスト（24px 以上または太字 18px 以上）と背景のコントラスト比は 3:1 以上
-
-### 10.3 フォントの拡大
-
-- テキストは、ブラウザの設定で 200%まで拡大しても読みやすさを維持すること
-- 固定サイズ（px）ではなく相対サイズ（rem）を使用すること
-
-## 11. 実装
-
-### 11.1 CSS カスタムプロパティ
-
-```css
-:root {
-  /* フォントファミリー */
-  --font-family-primary: "Noto Sans JP", sans-serif;
-  --font-family-secondary: "Noto Serif JP", serif;
-  --font-family-mono: "Roboto Mono", monospace;
-
-  /* フォントサイズ */
-  --font-size-display-large: 3.815rem;
-  --font-size-display-medium: 3.052rem;
-  --font-size-display-small: 2.441rem;
-  --font-size-heading-large: 1.953rem;
-  --font-size-heading-medium: 1.563rem;
-  --font-size-heading-small: 1.25rem;
-  --font-size-body-large: 1.125rem;
-  --font-size-body-medium: 1rem;
-  --font-size-body-small: 0.875rem;
-  --font-size-caption-large: 0.75rem;
-  --font-size-caption-small: 0.625rem;
-
-  /* フォントウェイト */
-  --font-weight-regular: 400;
-  --font-weight-medium: 500;
-  --font-weight-bold: 700;
-
-  /* 行の高さ */
-  --line-height-heading: 1.3;
-  --line-height-large-heading: 1.2;
-  --line-height-body: 1.5;
-  --line-height-caption: 1.4;
-}
-```
-
-### 11.2 コンポーネントライブラリでの使用
+## 使用例
 
 ```jsx
-// 例：Reactコンポーネントでの使用
-const Heading = ({ level = 1, children, ...props }) => {
-  const Tag = `h${level}`;
-  const classMap = {
-    1: "heading-large",
-    2: "heading-medium",
-    3: "heading-small",
-    // ...
-  };
+// 見出しの例
+<h1>Almondo RAG Chat</h1>
+<h2>ナレッジベース</h2>
 
-  return (
-    <Tag className={classMap[level]} {...props}>
-      {children}
-    </Tag>
-  );
-};
+// ボディテキストの例
+<p className="text-base">
+  RAGは外部情報源を利用して生成AIの回答を向上させる技術です。
+</p>
 
-const Text = ({ variant = "body", children, ...props }) => {
-  const classMap = {
-    body: "body-medium",
-    "body-small": "body-small",
-    caption: "caption-large",
-    // ...
-  };
-
-  return (
-    <p className={classMap[variant]} {...props}>
-      {children}
-    </p>
-  );
-};
+// 補足情報の例
+<span className="text-sm text-gray-600">
+  最終更新: 2023年8月5日
+</span>
 ```
-
-## 12. ユーザー入力とカスタマイズ
-
-タイポグラフィシステムは、ブランドアイデンティティやユーザーニーズに合わせてカスタマイズする必要があります。以下のセクションでは、ユーザーとの対話を通じてタイポグラフィシステムをカスタマイズするためのプロセスを記録します。
-
-### 主要な質問事項
-
-タイポグラフィシステムをカスタマイズするために、以下の質問への回答を検討してください：
-
-1. **ブランドと視覚的アイデンティティ**
-
-   - ブランドの性格や個性をどのようなフォントが最もよく表現しますか？
-   - 現在使用しているフォントはありますか？それはどのような目的で使用されていますか？
-   - 特定のフォントに対する好み（セリフ、サンセリフなど）はありますか？
-
-2. **ユーザー体験とアクセシビリティ**
-
-   - 主要なユーザー層の年齢や視力の特性はどうですか？
-   - 製品がどのような環境（明るさ、距離など）で使用されることが多いですか？
-   - 多言語対応の必要性はありますか？対応すべき特定の言語はありますか？
-
-3. **コンテンツとレイアウト**
-
-   - 主に扱うコンテンツの種類は何ですか？（長文、短文、データ表示など）
-   - 見出しの階層はどの程度の深さが必要ですか？
-   - モバイルとデスクトップの両方の環境をサポートする必要がありますか？
-
-4. **技術的考慮事項**
-   - ウェブフォントの読み込み時間に関する懸念はありますか？
-   - システムフォントの使用に関する制約はありますか？
-   - 特定のフォントライセンスの制限はありますか？
-
-### ユーザー入力の履歴
-
-| 日付 | 質問領域 | 入力内容 | 反映状況 |
-| ---- | -------- | -------- | -------- |
-|      |          |          |          |
-
-### タイポグラフィシステムカスタマイズ計画
-
-ユーザー入力に基づいて、以下のようにタイポグラフィシステムをカスタマイズしていく計画を記録します：
-
-| 計画項目 | 内容 | 優先度 | ステータス |
-| -------- | ---- | ------ | ---------- |
-|          |      |        |            |
-
-### フォントオプション提案
-
-ユーザーの要件に基づいて、以下のフォントオプションを提案します：
-
-#### オプション 1: [組み合わせ名]
-
-- 見出し用フォント: [フォント名]
-- 本文用フォント: [フォント名]
-- 特徴: [特徴の説明]
-- 適したユースケース: [ユースケースの説明]
-
-#### オプション 2: [組み合わせ名]
-
-- 見出し用フォント: [フォント名]
-- 本文用フォント: [フォント名]
-- 特徴: [特徴の説明]
-- 適したユースケース: [ユースケースの説明]
-
-### フォントスケールオプション
-
-ユーザーの要件に基づいて、以下のフォントスケールオプションを提案します：
-
-#### オプション 1: [スケール名]
-
-- ベースサイズ: [サイズ]
-- 比率: [比率]
-- スケールサンプル: [スケールの値]
-- 適したユースケース: [ユースケースの説明]
-
-#### オプション 2: [スケール名]
-
-- ベースサイズ: [サイズ]
-- 比率: [比率]
-- スケールサンプル: [スケールの値]
-- 適したユースケース: [ユースケースの説明]
