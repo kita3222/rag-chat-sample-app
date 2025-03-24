@@ -22,21 +22,7 @@ const getVariantStyles = (variant) => {
         border: var(--border-width-thin) solid var(--color-primary-20);
         color: var(--color-gray-900);
         align-self: flex-end;
-        border-radius: var(--border-radius-lg) var(--border-radius-lg) 0
-          var(--border-radius-lg);
-
-        &::after {
-          content: "";
-          position: absolute;
-          bottom: -8px;
-          right: 16px;
-          width: 16px;
-          height: 16px;
-          background-color: var(--color-primary-10);
-          border-right: var(--border-width-thin) solid var(--color-primary-20);
-          border-bottom: var(--border-width-thin) solid var(--color-primary-20);
-          clip-path: polygon(0 0, 100% 100%, 0 100%);
-        }
+        border-radius: var(--border-radius-lg);
       `;
     case VARIANTS.REFERENCE:
       return css`
@@ -71,21 +57,7 @@ const getVariantStyles = (variant) => {
         border: var(--border-width-thin) solid var(--color-gray-300);
         color: var(--color-gray-900);
         align-self: flex-start;
-        border-radius: var(--border-radius-lg) var(--border-radius-lg)
-          var(--border-radius-lg) 0;
-
-        &::after {
-          content: "";
-          position: absolute;
-          bottom: -8px;
-          left: 16px;
-          width: 16px;
-          height: 16px;
-          background-color: var(--color-white);
-          border-left: var(--border-width-thin) solid var(--color-gray-300);
-          border-bottom: var(--border-width-thin) solid var(--color-gray-300);
-          clip-path: polygon(100% 0, 0 100%, 100% 100%);
-        }
+        border-radius: var(--border-radius-lg);
       `;
   }
 };
