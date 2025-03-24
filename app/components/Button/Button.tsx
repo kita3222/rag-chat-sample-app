@@ -111,17 +111,21 @@ const getVariantStyles = (variant: ButtonVariant) => {
           background-color: var(--color-gray-100);
           border-color: var(--color-gray-400);
           color: var(--color-gray-800);
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.01);
           transform: translateY(-1px);
         }
 
         &:active:not(:disabled) {
           background-color: var(--color-gray-200);
+          border-color: var(--color-gray-400);
+          box-shadow: none;
           transform: translateY(0);
         }
 
         &:disabled {
           color: var(--color-gray-500);
           border-color: var(--color-gray-200);
+          box-shadow: none;
           opacity: 0.6;
         }
       `;
@@ -161,27 +165,21 @@ const getSizeStyles = (size: ButtonSize) => {
   switch (size) {
     case SIZES.SMALL:
       return css`
-        padding: var(--space-0-5) var(--space-2);
+        padding: var(--space-1) var(--space-2);
         font-size: var(--font-size-sm);
-        border-radius: var(--border-radius-sm);
-        height: 26px;
-        min-width: 60px;
+        border-radius: var(--border-radius-md);
       `;
     case SIZES.MEDIUM:
       return css`
-        padding: var(--space-1) var(--space-3);
+        padding: var(--space-2) var(--space-4);
         font-size: var(--font-size-md);
         border-radius: var(--border-radius-md);
-        height: 32px;
-        min-width: 80px;
       `;
     case SIZES.LARGE:
       return css`
-        padding: var(--space-2) var(--space-4);
+        padding: var(--space-3) var(--space-6);
         font-size: var(--font-size-lg);
         border-radius: var(--border-radius-md);
-        height: 40px;
-        min-width: 100px;
       `;
     default:
       return css``;
@@ -203,19 +201,16 @@ const StyledButton = styled.button<{
   transition: background-color var(--transition-fast) var(--transition-timing),
     border-color var(--transition-fast) var(--transition-timing),
     color var(--transition-fast) var(--transition-timing),
-    box-shadow var(--transition-fast) var(--transition-timing),
-    transform var(--transition-fast) var(--transition-timing);
+    box-shadow var(--transition-fast) var(--transition-timing);
   cursor: pointer;
   outline: none;
   position: relative;
   overflow: hidden;
-  gap: var(--space-1);
+  gap: var(--space-2);
   width: ${(props) => (props.$fullWidth ? "100%" : "auto")};
-  white-space: nowrap;
-  letter-spacing: 0.02em;
 
   &:focus-visible {
-    box-shadow: 0 0 0 1px var(--color-primary-20);
+    box-shadow: 0 0 0 2px var(--color-primary-20);
   }
 
   &:disabled {
@@ -236,9 +231,9 @@ const StyledButton = styled.button<{
       &::after {
         content: "";
         position: absolute;
-        width: 14px;
-        height: 14px;
-        border: 1.5px solid;
+        width: 16px;
+        height: 16px;
+        border: 2px solid;
         border-radius: 50%;
         border-color: var(--color-white) transparent var(--color-white)
           transparent;
@@ -261,12 +256,6 @@ const IconContainer = styled.span<{ $position: "left" | "right" }>`
   align-items: center;
   justify-content: center;
   order: ${(props) => (props.$position === "left" ? -1 : 1)};
-  opacity: 0.85;
-  font-size: 0.9em;
-  margin-left: ${(props) =>
-    props.$position === "right" ? "var(--space-1)" : 0};
-  margin-right: ${(props) =>
-    props.$position === "left" ? "var(--space-1)" : 0};
 `;
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

@@ -429,9 +429,3 @@ textarea:focus {
 .h-full {
   height: 100%;
 }
-
-/* Storybook専用のユーティリティ */
-.storybook-container {
-  padding: var(--space-4);
-  max-width: 100%;
-}

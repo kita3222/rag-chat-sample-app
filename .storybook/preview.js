@@ -16,6 +16,10 @@ const preview = {
         { name: "dark", value: "#1A1A1A" },
       ],
     },
+    nextjs: {
+      appDirectory: true,
+      navigation: {},
+    },
   },
 };
 

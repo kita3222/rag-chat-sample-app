@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./styles/global.css";
 import StyledComponentsRegistry from "../lib/registry";
 import { ReactNode } from "react";
+import { AuthProvider } from "./auth/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +20,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="ja">
       <body className={inter.className}>
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        <StyledComponentsRegistry>
+          <AuthProvider>{children}</AuthProvider>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );
