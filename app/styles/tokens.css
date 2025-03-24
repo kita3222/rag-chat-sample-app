@@ -10,17 +10,18 @@
   --color-secondary-light: #7b82b5;
   --color-secondary-dark: #464c7d;
 
-  /* ニュートラルカラー */
+  /* ニュートラルカラー - より洗練された繊細なグレースケール */
+  --color-gray-50: #fafbfc;
   --color-gray-100: #f7f9fa;
-  --color-gray-200: #e9ecef;
-  --color-gray-300: #dfe1e6;
-  --color-gray-400: #c1c7d0;
-  --color-gray-500: #a5adba;
-  --color-gray-600: #8993a4;
-  --color-gray-700: #6b778c;
-  --color-gray-800: #505f79;
-  --color-gray-900: #344563;
-  --color-black: #333333;
+  --color-gray-200: #ebeef1;
+  --color-gray-300: #dce0e5;
+  --color-gray-400: #bcc2cc;
+  --color-gray-500: #9da5b4;
+  --color-gray-600: #7d8799;
+  --color-gray-700: #606a7b;
+  --color-gray-800: #475060;
+  --color-gray-900: #343c4a;
+  --color-black: #1f242e;
   --color-white: #ffffff;
 
   /* システムカラー */
@@ -29,10 +30,28 @@
   --color-error: #e34935;
   --color-info: #4c9aff;
 
-  /* 透明度バリエーション - 透明度を少し上げて柔らかく */
-  --color-primary-10: rgba(248, 197, 82, 0.08); /* 透明度を微調整 */
-  --color-primary-20: rgba(248, 197, 82, 0.15); /* 透明度を微調整 */
-  --color-primary-50: rgba(248, 197, 82, 0.4); /* 透明度を微調整 */
+  /* 透明度バリエーション - さらに透明度を上げて軽やかに */
+  --color-primary-5: rgba(248, 197, 82, 0.03);
+  --color-primary-10: rgba(248, 197, 82, 0.06);
+  --color-primary-20: rgba(248, 197, 82, 0.09);
+  --color-primary-40: rgba(248, 197, 82, 0.18);
+  --color-primary-60: rgba(248, 197, 82, 0.35);
+
+  /* 他の透明度バリエーション */
+  --color-secondary-10: rgba(91, 99, 165, 0.06);
+  --color-secondary-20: rgba(91, 99, 165, 0.09);
+
+  --color-success-10: rgba(54, 179, 126, 0.06);
+  --color-success-light: rgba(54, 179, 126, 0.15);
+
+  --color-warning-10: rgba(244, 179, 33, 0.06);
+  --color-warning-light: rgba(244, 179, 33, 0.15);
+
+  --color-error-10: rgba(227, 73, 53, 0.06);
+  --color-error-light: rgba(227, 73, 53, 0.15);
+
+  --color-info-10: rgba(76, 154, 255, 0.06);
+  --color-info-light: rgba(76, 154, 255, 0.15);
 
   /* タイポグラフィ */
   /* フォントファミリー */
@@ -40,96 +59,97 @@
     Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif;
 
-  /* フォントサイズ */
-  --font-size-h1: 28px;
-  --font-size-h2: 24px;
-  --font-size-h3: 20px;
-  --font-size-h4: 18px;
-  --font-size-lg: 16px;
-  --font-size-md: 14px;
+  /* フォントサイズ - 全体的に小さく洗練された印象に */
+  --font-size-h1: 24px;
+  --font-size-h2: 20px;
+  --font-size-h3: 18px;
+  --font-size-h4: 16px;
+  --font-size-lg: 15px;
+  --font-size-md: 13px;
   --font-size-sm: 12px;
   --font-size-xs: 11px;
 
   /* 行高 */
-  --line-height-heading: 1.2;
+  --line-height-heading: 1.25;
   --line-height-base: 1.5;
   --line-height-small: 1.4;
 
-  /* フォントウェイト */
+  /* フォントウェイト - より繊細に */
   --font-weight-regular: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
+  --font-weight-medium: 450;
+  --font-weight-semibold: 550;
+  --font-weight-bold: 650;
 
-  /* スペーシング */
-  /* スペーシングスケール */
+  /* スペーシング - よりコンパクトに */
+  --space-0-5: 2px;
   --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-5: 24px;
-  --space-6: 32px;
-  --space-7: 40px;
-  --space-8: 48px;
-  --space-9: 64px;
-  --space-10: 80px;
+  --space-2: 6px;
+  --space-3: 10px;
+  --space-4: 14px;
+  --space-5: 20px;
+  --space-6: 28px;
+  --space-7: 36px;
+  --space-8: 44px;
+  --space-9: 60px;
+  --space-10: 76px;
 
-  /* コンポーネント固有 */
-  --button-padding-h: var(--space-4);
+  /* コンポーネント固有 - サイズダウン */
+  --button-padding-h: var(--space-3);
   --button-padding-v: var(--space-2);
-  --input-padding: var(--space-3);
-  --card-padding: var(--space-4);
+  --input-padding: var(--space-2);
+  --card-padding: var(--space-3);
   --list-item-spacing: var(--space-2);
 
   /* レイアウト固有 */
-  --container-padding-mobile: var(--space-4);
-  --container-padding-desktop: var(--space-6);
-  --section-spacing-medium: var(--space-8);
+  --container-padding-mobile: var(--space-3);
+  --container-padding-desktop: var(--space-5);
+  --section-spacing-medium: var(--space-7);
 
   /* チャット固有 */
   --message-spacing: var(--space-2);
-  --message-group-spacing: var(--space-5);
-  --message-padding: var(--space-3);
+  --message-group-spacing: var(--space-4);
+  --message-padding: var(--space-2);
 
-  /* ボーダーラディウス */
+  /* ボーダーラディウス - よりシャープかつ洗練された印象に */
   --border-radius-sm: 4px;
-  --border-radius-md: 8px;
-  --border-radius-lg: 12px;
-  --border-radius-pill: 9999px;
+  --border-radius-md: 6px;
+  --border-radius-lg: 8px;
+  --border-radius-xl: 12px;
+  --border-radius-full: 9999px;
 
-  /* ボーダー幅 */
-  --border-width-thin: 1px;
-  --border-width-medium: 2px;
-  --border-width-thick: 4px;
+  /* ボーダー幅 - さらに細く繊細に */
+  --border-width-thin: 0.5px;
+  --border-width-medium: 1px;
+  --border-width-thick: 1.5px;
 
-  /* シャドウ */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+  /* シャドウ - より微細で繊細に */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.02), 0 1px 1px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.02), 0 2px 4px rgba(0, 0, 0, 0.03);
+  --shadow-xl: 0 8px 16px rgba(0, 0, 0, 0.02), 0 4px 8px rgba(0, 0, 0, 0.03);
 
-  /* トランジション */
-  --transition-fast: 150ms;
-  --transition-normal: 300ms;
-  --transition-slow: 500ms;
+  /* トランジション - よりスムーズに */
+  --transition-fast: 130ms;
+  --transition-normal: 250ms;
+  --transition-slow: 400ms;
   --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
   :root {
-    --font-size-h1: 24px;
-    --font-size-h2: 20px;
-    --font-size-h3: 18px;
-    --font-size-h4: 16px;
+    --font-size-h1: 22px;
+    --font-size-h2: 18px;
+    --font-size-h3: 16px;
+    --font-size-h4: 15px;
     --container-padding: var(--container-padding-mobile);
-    --section-spacing-large: var(--space-7);
+    --section-spacing-large: var(--space-6);
   }
 }
 
 @media (min-width: 769px) {
   :root {
     --container-padding: var(--container-padding-desktop);
-    --section-spacing-large: var(--space-9);
+    --section-spacing-large: var(--space-8);
   }
 }
