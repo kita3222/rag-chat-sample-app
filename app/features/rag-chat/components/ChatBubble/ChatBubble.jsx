@@ -25,19 +25,17 @@ const getVariantStyles = (variant) => {
         border-radius: var(--border-radius-lg) var(--border-radius-lg) 0
           var(--border-radius-lg);
 
-        /* 右下の矢印部分を修正 */
-        &::before {
+        &::after {
           content: "";
           position: absolute;
-          bottom: -10px;
-          right: 10px;
-          width: 20px;
-          height: 20px;
+          bottom: -8px;
+          right: 16px;
+          width: 16px;
+          height: 16px;
           background-color: var(--color-primary-10);
           border-right: var(--border-width-thin) solid var(--color-primary-20);
           border-bottom: var(--border-width-thin) solid var(--color-primary-20);
-          transform: rotate(45deg);
-          border-radius: 0 0 4px 0;
+          clip-path: polygon(0 0, 100% 100%, 0 100%);
         }
       `;
     case VARIANTS.REFERENCE:
@@ -76,19 +74,17 @@ const getVariantStyles = (variant) => {
         border-radius: var(--border-radius-lg) var(--border-radius-lg)
           var(--border-radius-lg) 0;
 
-        /* 左下の矢印部分を修正 */
-        &::before {
+        &::after {
           content: "";
           position: absolute;
-          bottom: -10px;
-          left: 10px;
-          width: 20px;
-          height: 20px;
+          bottom: -8px;
+          left: 16px;
+          width: 16px;
+          height: 16px;
           background-color: var(--color-white);
           border-left: var(--border-width-thin) solid var(--color-gray-300);
           border-bottom: var(--border-width-thin) solid var(--color-gray-300);
-          transform: rotate(45deg);
-          border-radius: 0 0 0 4px;
+          clip-path: polygon(100% 0, 0 100%, 100% 100%);
         }
       `;
   }
@@ -139,8 +135,6 @@ const BubbleContainer = styled.div`
   word-wrap: break-word;
   margin-bottom: var(--message-spacing, 16px);
   transition: all var(--transition-fast) var(--transition-timing);
-  /* 矢印部分のためにマージンを追加 */
-  margin-bottom: calc(var(--message-spacing, 16px) + 10px);
 
   /* バリアントスタイル */
   ${(props) => getVariantStyles(props.variant)}
