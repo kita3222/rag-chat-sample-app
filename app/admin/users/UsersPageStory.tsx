@@ -5,6 +5,7 @@ import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 import AppLayout from "../../components/layouts/AppLayout";
 import { MockAuthProvider } from "../../auth/MockAuthProvider";
+import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 
 // オリジナルのUsersPageと同じインタフェース定義
 interface User {
@@ -32,7 +33,7 @@ const PageTitle = styled.h1`
 const SearchContainer = styled.div`
   display: flex;
   gap: var(--space-2);
-  width: 300px;
+  flex-shrink: 0;
 `;
 
 const TableContainer = styled(Card)`
@@ -179,6 +180,22 @@ export default function UsersPageStory() {
   const currentUsers = users;
   const totalPages = Math.ceil(users.length / usersPerPage);
 
+  // 検索コンポーネント
+  const searchComponent = (
+    <Input
+      type="text"
+      placeholder="ユーザーを検索..."
+      value={searchTerm}
+      onChange={() => {}}
+      inputSize={Input.SIZES.SMALL}
+    />
+  );
+
+  // 新規ユーザー作成ボタンのクリックハンドラ（ストーリー用なので実際の処理は行わない）
+  const handleCreateUser = () => {
+    // ストーリー用なので実際の処理は行わない
+  };
+
   return (
     <MockAuthProvider
       authState={{
@@ -193,20 +210,24 @@ export default function UsersPageStory() {
       }}
     >
       <AppLayout>
-        <PageHeader>
-          <PageTitle>ユーザー管理</PageTitle>
-          <SearchContainer>
-            <Input
-              type="text"
-              placeholder="ユーザーを検索..."
-              value={searchTerm}
-              onChange={() => {}}
-              inputSize={Input.SIZES.SMALL}
-            />
-          </SearchContainer>
-        </PageHeader>
+        <Breadcrumb
+          items={[{ label: "管理", href: "/admin" }, { label: "ユーザー管理" }]}
+          title="ユーザー管理"
+          rightComponents={
+            <SearchContainer>
+              <Button
+                variant={Button.VARIANTS.PRIMARY}
+                size={Button.SIZES.SMALL}
+                onClick={handleCreateUser}
+              >
+                新規ユーザー作成
+              </Button>
+              {searchComponent}
+            </SearchContainer>
+          }
+        />
 
-        <TableContainer variant={Card.VARIANTS.FLAT}>
+        <TableContainer variant={Card.VARIANTS.OUTLINED}>
           <Table>
             <TableHead>
               <tr>

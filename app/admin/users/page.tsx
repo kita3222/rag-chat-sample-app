@@ -7,6 +7,7 @@ import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 import AppLayout from "../../components/layouts/AppLayout";
 import ProtectedRoute from "../../auth/ProtectedRoute";
+import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 
 interface User {
   id: string;
@@ -33,7 +34,8 @@ const PageTitle = styled.h1`
 const SearchContainer = styled.div`
   display: flex;
   gap: var(--space-2);
-  width: 300px;
+  width: 240px;
+  flex-shrink: 0;
 `;
 
 const TableContainer = styled(Card)`
@@ -195,23 +197,44 @@ export default function UsersPage() {
   const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
   const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
 
+  // 検索コンポーネント
+  const searchComponent = (
+    <Input
+      type="text"
+      placeholder="ユーザーを検索..."
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+      inputSize={Input.SIZES.SMALL}
+    />
+  );
+
+  // 新規ユーザー作成ボタンのクリックハンドラ
+  const handleCreateUser = () => {
+    alert("新規ユーザー作成");
+    // ここで新規ユーザー作成モーダルを表示するなどの実装をする
+  };
+
   return (
     <ProtectedRoute adminOnly>
       <AppLayout>
-        <PageHeader>
-          <PageTitle>ユーザー管理</PageTitle>
-          <SearchContainer>
-            <Input
-              type="text"
-              placeholder="ユーザーを検索..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              inputSize={Input.SIZES.SMALL}
-            />
-          </SearchContainer>
-        </PageHeader>
+        <Breadcrumb
+          items={[{ label: "管理", href: "/admin" }, { label: "ユーザー管理" }]}
+          title="ユーザー管理"
+          rightComponents={
+            <SearchContainer>
+              <Button
+                variant={Button.VARIANTS.PRIMARY}
+                size={Button.SIZES.SMALL}
+                onClick={handleCreateUser}
+              >
+                新規ユーザー作成
+              </Button>
+              {searchComponent}
+            </SearchContainer>
+          }
+        />
 
-        <TableContainer variant={Card.VARIANTS.FLAT}>
+        <TableContainer variant={Card.VARIANTS.OUTLINED}>
           <Table>
             <TableHead>
               <tr>
