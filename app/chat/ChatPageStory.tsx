@@ -5,18 +5,10 @@ import styled from "styled-components";
 import AppLayout from "../components/layouts/AppLayout";
 import ChatInterface from "../features/rag-chat/components/ChatInterface";
 import Card from "../components/Card/Card";
-import Button from "../components/Button/Button";
+import Sidebar from "../components/layouts/Sidebar/Sidebar";
 import { MockAuthProvider } from "../auth/MockAuthProvider";
 
 // タイプ定義
-interface Conversation {
-  id: string;
-  title: string;
-  lastMessage?: string;
-  timestamp: string;
-  isSelected: boolean;
-}
-
 interface MessageSource {
   title: string;
   url: string;
@@ -53,115 +45,77 @@ const mockMessages = [
 ];
 
 // モック会話リスト
-const mockConversations: Conversation[] = [
+const mockConversations = [
   {
     id: "conv1",
     title: "プロジェクトについての質問",
-    lastMessage: "RAGシステムの構築方法について教えてください",
-    timestamp: "2023/03/24 12:30",
-    isSelected: true,
+    date: "2023/03/24 12:30",
+    isActive: true,
   },
   {
     id: "conv2",
     title: "ドキュメント検索の質問",
-    lastMessage: "PDFからのテキスト抽出について教えてください",
-    timestamp: "2023/03/23 15:45",
-    isSelected: false,
+    date: "2023/03/23 15:45",
+    isActive: false,
   },
   {
     id: "conv3",
     title: "データベース連携について",
-    lastMessage: "ベクトルデータベースの比較について知りたいです",
-    timestamp: "2023/03/22 09:20",
-    isSelected: false,
+    date: "2023/03/22 09:20",
+    isActive: false,
   },
 ];
 
 // スタイル定義
 const ChatContainer = styled.div`
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: var(--space-4);
-  height: calc(100vh - 140px);
-`;
-
-const SidebarContainer = styled(Card)`
   display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow: hidden;
-`;
-
-const SidebarHeader = styled.div`
-  padding: var(--space-3);
-  border-bottom: var(--border-width-thin) solid var(--color-gray-200);
-`;
-
-const ConversationList = styled.div`
-  flex: 1;
-  overflow-y: auto;
-  padding: var(--space-2) 0;
-`;
-
-const ConversationItem = styled.div<{ $isSelected?: boolean }>`
-  padding: var(--space-2) var(--space-3);
-  cursor: pointer;
-  border-radius: var(--border-radius-sm);
-  margin: 0 var(--space-2);
-
-  ${({ $isSelected }) =>
-    $isSelected &&
-    `
-    background-color: var(--color-primary-10);
-    color: var(--color-primary-dark);
-  `}
-
-  &:hover {
-    background-color: ${({ $isSelected }) =>
-      $isSelected ? "var(--color-primary-20)" : "var(--color-gray-100)"};
-  }
-`;
-
-const ConversationTitle = styled.div`
-  font-weight: var(--font-weight-medium);
-  font-size: var(--font-size-sm);
-  margin-bottom: var(--space-1);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-
-const ConversationPreview = styled.div`
-  font-size: var(--font-size-xs);
-  color: var(--color-gray-600);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-
-const ConversationTimestamp = styled.div`
-  font-size: var(--font-size-xs);
-  color: var(--color-gray-500);
-  margin-top: var(--space-1);
+  height: calc(100vh - 140px);
+  position: relative;
 `;
 
 const ChatPanel = styled.div`
+  flex: 1;
   height: 100%;
   overflow: hidden;
+  padding: var(--space-4);
 `;
 
 // Storybook用のコンポーネント
 export default function ChatPageStory() {
   const [conversations, setConversations] = useState(mockConversations);
 
-  // 会話を選択するハンドラー（Storybook用にシンプル化）
+  // 会話を選択するハンドラー
   const handleSelectConversation = (id: string) => {
     setConversations(
       conversations.map((conv) => ({
         ...conv,
-        isSelected: conv.id === id,
+        isActive: conv.id === id,
       }))
     );
+  };
+
+  // 新しい会話を作成するハンドラー
+  const handleNewConversation = () => {
+    const newId = `conv${conversations.length + 1}`;
+    const newConversation = {
+      id: newId,
+      title: `新しい会話 ${conversations.length + 1}`,
+      date: new Date()
+        .toLocaleString("ja-JP", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+        })
+        .replace(/\//g, "/"),
+      isActive: true,
+    };
+
+    setConversations([
+      newConversation,
+      ...conversations.map((conv) => ({ ...conv, isActive: false })),
+    ]);
   };
 
   return (
@@ -179,32 +133,11 @@ export default function ChatPageStory() {
     >
       <AppLayout>
         <ChatContainer>
-          <SidebarContainer variant={Card.VARIANTS.DEFAULT}>
-            <SidebarHeader>
-              <Button onClick={() => {}} fullWidth size={Button.SIZES.MEDIUM}>
-                新しい会話
-              </Button>
-            </SidebarHeader>
-            <ConversationList>
-              {conversations.map((conversation) => (
-                <ConversationItem
-                  key={conversation.id}
-                  $isSelected={conversation.isSelected}
-                  onClick={() => handleSelectConversation(conversation.id)}
-                >
-                  <ConversationTitle>{conversation.title}</ConversationTitle>
-                  {conversation.lastMessage && (
-                    <ConversationPreview>
-                      {conversation.lastMessage}
-                    </ConversationPreview>
-                  )}
-                  <ConversationTimestamp>
-                    {conversation.timestamp}
-                  </ConversationTimestamp>
-                </ConversationItem>
-              ))}
-            </ConversationList>
-          </SidebarContainer>
+          <Sidebar
+            conversations={conversations}
+            onConversationSelect={handleSelectConversation}
+            onNewConversation={handleNewConversation}
+          />
 
           <ChatPanel>
             <ChatInterface

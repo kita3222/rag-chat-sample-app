@@ -26,6 +26,7 @@ const ChatContainer = styled.div`
   box-shadow: var(--shadow-sm);
   overflow: hidden;
   padding: var(--space-4);
+  width: 100%;
 `;
 
 const ChatLayout: React.FC<ChatLayoutProps> = ({

@@ -32,36 +32,17 @@ const MainContainer = styled.div`
   display: flex;
   flex: 1;
   height: calc(100vh - 64px);
+  position: relative;
 `;
 
-const SidebarContainer = styled.div`
-  width: 280px;
-  height: 100%;
-  border-right: 1px solid var(--color-gray-200);
-  background-color: var(--color-white);
-  overflow-y: auto;
-  transition: transform 0.3s ease;
-
-  @media (max-width: 768px) {
-    position: fixed;
-    top: 64px;
-    left: 0;
-    z-index: 10;
-    transform: translateX(-100%);
-
-    &.visible {
-      transform: translateX(0);
-    }
-  }
-`;
-
-const ContentContainer = styled.main`
+const Main = styled.main<{ $hasSidebar: boolean }>`
   flex: 1;
-  overflow-y: auto;
-  padding: var(--space-5);
+  overflow: auto;
+  height: 100%;
+  padding: var(--space-6);
 
   @media (max-width: 768px) {
-    padding: var(--space-3);
+    padding: var(--space-4);
   }
 `;
 
@@ -84,16 +65,14 @@ const Layout: React.FC<LayoutProps> = ({
 
       <MainContainer>
         {showSidebar && (
-          <SidebarContainer className={showSidebar ? "visible" : ""}>
-            <Sidebar
-              conversations={conversations}
-              onConversationSelect={onConversationSelect}
-              onNewConversation={onNewConversation}
-            />
-          </SidebarContainer>
+          <Sidebar
+            conversations={conversations}
+            onConversationSelect={onConversationSelect}
+            onNewConversation={onNewConversation}
+          />
         )}
 
-        <ContentContainer>{children}</ContentContainer>
+        <Main $hasSidebar={showSidebar}>{children}</Main>
       </MainContainer>
 
       {showFooter && (

@@ -165,19 +165,19 @@ const getSizeStyles = (size: ButtonSize) => {
   switch (size) {
     case SIZES.SMALL:
       return css`
-        padding: var(--space-1) var(--space-2);
+        padding: var(--space-2) var(--space-3);
         font-size: var(--font-size-sm);
         border-radius: var(--border-radius-md);
       `;
     case SIZES.MEDIUM:
       return css`
-        padding: var(--space-2) var(--space-4);
+        padding: var(--space-3) var(--space-5);
         font-size: var(--font-size-md);
         border-radius: var(--border-radius-md);
       `;
     case SIZES.LARGE:
       return css`
-        padding: var(--space-3) var(--space-6);
+        padding: var(--space-4) var(--space-6);
         font-size: var(--font-size-lg);
         border-radius: var(--border-radius-md);
       `;
@@ -206,7 +206,7 @@ const StyledButton = styled.button<{
   outline: none;
   position: relative;
   overflow: hidden;
-  gap: var(--space-2);
+  gap: var(--space-3);
   width: ${(props) => (props.$fullWidth ? "100%" : "auto")};
 
   &:focus-visible {

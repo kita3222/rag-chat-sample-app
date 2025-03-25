@@ -54,11 +54,22 @@ const getVariantStyles = (variant: CardVariant) => {
 const CardContainer = styled.div<{
   $variant: CardVariant;
   $selected: boolean;
+  $borderStyle?: string;
+  $shadow?: string;
+  $overflow?: string;
+  $width?: string;
 }>`
   background-color: var(--color-white);
   border-radius: var(--border-radius-md);
-  padding: var(--card-padding);
-  overflow: hidden;
+  border: ${(props) =>
+    props.$borderStyle ||
+    "var(--border-width-thin) solid var(--color-gray-200)"};
+  box-shadow: ${(props) => props.$shadow || "var(--shadow-sm)"};
+  overflow: ${(props) => (props.$overflow ? props.$overflow : "hidden")};
+  padding: var(--space-4);
+  width: ${(props) => props.$width || "100%"};
+  transition: box-shadow var(--transition-fast) var(--transition-timing),
+    transform var(--transition-fast) var(--transition-timing);
 
   /* バリアントスタイル */
   ${(props) => getVariantStyles(props.$variant)}
@@ -73,24 +84,25 @@ const CardContainer = styled.div<{
 `;
 
 const CardHeader = styled.div`
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-4);
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
-const CardTitle = styled.h3`
-  margin: 0;
-  font-size: var(--font-size-md);
+const CardTitle = styled.h3<{ $isCenter?: boolean }>`
+  font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
   color: var(--color-gray-900);
+  margin: 0;
+  text-align: ${(props) => (props.$isCenter ? "center" : "left")};
 `;
 
 const CardSubtitle = styled.p`
   margin: 0;
   font-size: var(--font-size-sm);
   color: var(--color-gray-600);
-  margin-top: var(--space-1);
+  margin-top: var(--space-2);
 `;
 
 const CardContent = styled.div`
@@ -98,11 +110,26 @@ const CardContent = styled.div`
 `;
 
 const CardFooter = styled.div`
-  margin-top: var(--space-3);
+  margin-top: var(--space-4);
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: var(--space-2);
+  gap: var(--space-3);
+`;
+
+const CardDescription = styled.p`
+  margin: 0;
+  color: var(--color-gray-700);
+  font-size: var(--font-size-md);
+  margin-top: var(--space-2);
+`;
+
+const CardActions = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
 `;
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
@@ -114,6 +141,10 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
   selected?: boolean;
   className?: string;
+  borderStyle?: string;
+  shadow?: string;
+  overflow?: string;
+  width?: string;
 }
 
 const Card = ({
@@ -126,6 +157,10 @@ const Card = ({
   onClick,
   selected = false,
   className,
+  borderStyle,
+  shadow,
+  overflow,
+  width,
   ...props
 }: CardProps) => {
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -139,6 +174,10 @@ const Card = ({
       $variant={variant}
       onClick={handleClick}
       $selected={selected}
+      $borderStyle={borderStyle}
+      $shadow={shadow}
+      $overflow={overflow}
+      $width={width}
       className={className}
       {...props}
     >

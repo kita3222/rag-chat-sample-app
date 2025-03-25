@@ -32,14 +32,14 @@ const getSizeStyles = (inputSize: SizeType) => {
     case SIZES.LARGE:
       return css`
         height: 48px;
-        padding: 0 var(--space-4);
-        font-size: var(--font-size-lg);
+        padding: 0 var(--space-5);
+        font-size: var(--font-size-md);
       `;
     case SIZES.MEDIUM:
     default:
       return css`
         height: 40px;
-        padding: 0 var(--space-3);
+        padding: 0 var(--space-4);
         font-size: var(--font-size-md);
       `;
   }
@@ -103,13 +103,13 @@ const InputField = styled.input<InputFieldProps>`
   ${(props) =>
     props.hasLeftIcon &&
     css`
-      padding-left: calc(var(--space-4) + 20px);
+      padding-left: calc(var(--space-5) + 20px);
     `}
 
   ${(props) =>
     props.hasRightIcon &&
     css`
-      padding-right: calc(var(--space-4) + 20px);
+      padding-right: calc(var(--space-5) + 20px);
     `}
   
   /* プレースホルダースタイル */
@@ -148,7 +148,14 @@ const RightIconWrapper = styled.div<RightIconWrapperProps>`
 const ErrorMessage = styled.div`
   color: var(--color-error);
   font-size: var(--font-size-sm);
-  margin-top: var(--space-1);
+  margin-top: var(--space-2);
+`;
+
+const HelperText = styled.div<{ $hasError: boolean }>`
+  color: ${(props) =>
+    props.$hasError ? "var(--color-error)" : "var(--color-gray-600)"};
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--space-2);
 `;
 
 const Label = styled.label`
@@ -156,7 +163,7 @@ const Label = styled.label`
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   color: var(--color-gray-800);
-  margin-bottom: var(--space-1);
+  margin-bottom: var(--space-2);
 `;
 
 export interface InputProps

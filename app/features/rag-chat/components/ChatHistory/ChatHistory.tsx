@@ -4,26 +4,24 @@ import React, { useRef, useEffect, ReactNode } from "react";
 import styled from "styled-components";
 import ChatBubble from "../ChatBubble";
 
-const ChatHistoryContainer = styled.div`
+const ChatContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
-  overflow-y: auto;
-  padding: var(--space-4);
   height: 100%;
-  background-color: var(--color-gray-50);
+  overflow-y: auto;
+  padding: var(--space-5);
 `;
 
 const MessageGroup = styled.div`
+  margin: var(--space-5) 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
 `;
 
 const DateSeparator = styled.div`
   display: flex;
   align-items: center;
-  margin: var(--space-4) 0;
+  margin: var(--space-5) 0;
   color: var(--color-gray-600);
   font-size: var(--font-size-sm);
   text-align: center;
@@ -36,23 +34,23 @@ const DateSeparator = styled.div`
   }
 
   &::before {
-    margin-right: var(--space-2);
+    margin-right: var(--space-3);
   }
 
   &::after {
-    margin-left: var(--space-2);
+    margin-left: var(--space-3);
   }
 `;
 
 const TypingIndicator = styled.div`
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 8px 16px;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-4);
   background-color: var(--color-gray-200);
   border-radius: 16px;
   width: fit-content;
-  margin-top: var(--space-2);
+  margin-top: var(--space-3);
 
   span {
     width: 8px;
@@ -91,10 +89,10 @@ const EmptyState = styled.div`
   height: 100%;
   text-align: center;
   color: var(--color-gray-500);
-  padding: var(--space-4);
+  padding: var(--space-5);
 
   h3 {
-    margin-bottom: var(--space-2);
+    margin-bottom: var(--space-3);
     font-size: var(--font-size-lg);
   }
 
@@ -187,21 +185,21 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({
   // メッセージが空の場合の表示
   if (messages.length === 0 && !isLoading) {
     return (
-      <ChatHistoryContainer>
+      <ChatContainer>
         <EmptyState>
           <h3>会話を始めましょう</h3>
           <p>
             質問や問い合わせ内容を入力してください。知識ベースを参照して回答します。
           </p>
         </EmptyState>
-      </ChatHistoryContainer>
+      </ChatContainer>
     );
   }
 
   // エラーがある場合の表示
   if (error) {
     return (
-      <ChatHistoryContainer>
+      <ChatContainer>
         <ChatBubble
           variant="SYSTEM"
           state="ERROR"
@@ -213,7 +211,7 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({
         >
           エラーが発生しました
         </ChatBubble>
-      </ChatHistoryContainer>
+      </ChatContainer>
     );
   }
 
@@ -221,7 +219,7 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({
   const messageGroups = groupMessagesByDate(messages);
 
   return (
-    <ChatHistoryContainer>
+    <ChatContainer>
       {messageGroups.map((group, groupIndex) => (
         <React.Fragment key={`group-${groupIndex}`}>
           <DateSeparator>{formatDateJa(group.date)}</DateSeparator>
@@ -256,7 +254,7 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({
       )}
 
       <div ref={endOfMessagesRef} />
-    </ChatHistoryContainer>
+    </ChatContainer>
   );
 };
 
