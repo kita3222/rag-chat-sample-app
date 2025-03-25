@@ -175,7 +175,7 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({
   isLoading = false,
   error = null,
 }) => {
-  const endOfMessagesRef = useRef < HTMLDivElement > null;
+  const endOfMessagesRef = useRef<HTMLDivElement>(null);
 
   // 新しいメッセージが来たら、自動的に一番下までスクロール
   useEffect(() => {
@@ -230,7 +230,10 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({
               <ChatBubble
                 key={`message-${messageIndex}`}
                 variant={message.sender === "user" ? "USER" : "SYSTEM"}
-                state={message.state || "DEFAULT"}
+                state={
+                  (message.state as "DEFAULT" | "LOADING" | "ERROR") ||
+                  "DEFAULT"
+                }
                 timestamp={message.timestamp}
                 source={message.source}
                 errorMessage={message.errorMessage}

@@ -210,7 +210,7 @@ export default function ChatPageStory() {
             <ChatInterface
               title="Almondo RAG アシスタント"
               initialMessages={mockMessages}
-              onNewMessage={() => {}}
+              onNewMessage={() => Promise.resolve()}
               onReset={() => {}}
               onSettingsClick={() => {}}
             />
