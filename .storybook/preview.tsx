@@ -1,7 +1,21 @@
 import "../app/styles/global.css";
+import { ReactNode } from "react";
+import { StyleSheetManager } from "styled-components";
+import type { Preview, StoryFn } from "@storybook/react";
+
+const withThemeProvider = (Story: StoryFn) => {
+  return (
+    <StyleSheetManager
+      enableVendorPrefixes
+      shouldForwardProp={(prop) => prop !== "$isSelected"}
+    >
+      <Story />
+    </StyleSheetManager>
+  );
+};
 
 /** @type { import('@storybook/react').Preview } */
-const preview = {
+const preview: Preview = {
   parameters: {
     controls: {
       matchers: {
@@ -21,6 +35,7 @@ const preview = {
       navigation: {},
     },
   },
+  decorators: [withThemeProvider],
 };
 
 export default preview;

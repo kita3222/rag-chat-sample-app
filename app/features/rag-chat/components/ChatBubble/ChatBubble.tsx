@@ -1,22 +1,33 @@
 "use client";
 
-import React from "react";
+import React, { ReactNode } from "react";
 import styled, { css } from "styled-components";
 
 const VARIANTS = {
-  USER: "user",
-  SYSTEM: "system",
-  REFERENCE: "reference",
-};
+  USER: "USER",
+  SYSTEM: "SYSTEM",
+  REFERENCE: "REFERENCE",
+} as const;
 
 const STATES = {
-  DEFAULT: "default",
-  LOADING: "loading",
-  ERROR: "error",
-};
+  DEFAULT: "DEFAULT",
+  LOADING: "LOADING",
+  ERROR: "ERROR",
+} as const;
+
+type VariantType = typeof VARIANTS[keyof typeof VARIANTS];
+type StateType = typeof STATES[keyof typeof STATES];
+
+interface VariantStyleProps {
+  variant: VariantType;
+}
+
+interface StateStyleProps {
+  state: StateType;
+}
 
 // バリアントに基づくスタイル
-const getVariantStyles = (variant) => {
+const getVariantStyles = (variant: VariantType) => {
   switch (variant) {
     case VARIANTS.USER:
       return css`
@@ -65,7 +76,7 @@ const getVariantStyles = (variant) => {
 };
 
 // 状態に基づくスタイル
-const getStateStyles = (state) => {
+const getStateStyles = (state: StateType) => {
   switch (state) {
     case STATES.LOADING:
       return css`
@@ -102,7 +113,7 @@ const getStateStyles = (state) => {
   }
 };
 
-const BubbleWrapper = styled.div`
+const BubbleWrapper = styled.div<VariantStyleProps>`
   display: flex;
   align-items: flex-start;
   position: relative;
@@ -112,7 +123,7 @@ const BubbleWrapper = styled.div`
   gap: 8px;
 `;
 
-const BubbleContainer = styled.div`
+const BubbleContainer = styled.div<VariantStyleProps & StateStyleProps>`
   position: relative;
   padding: var(--message-padding);
   max-width: 70%;
@@ -165,7 +176,7 @@ const ErrorInfo = styled.div`
 `;
 
 // 時間をフォーマットする関数
-const formatTime = (timeString) => {
+const formatTime = (timeString: string): string => {
   try {
     const date = new Date(timeString);
     if (isNaN(date.getTime())) {
@@ -197,7 +208,21 @@ const formatTime = (timeString) => {
   }
 };
 
-const ChatBubble = ({
+interface ChatBubbleProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
+  variant?: VariantType;
+  state?: StateType;
+  timestamp?: string;
+  source?: string;
+  onSourceClick?: () => void;
+  errorMessage?: string;
+  className?: string;
+}
+
+const ChatBubble: React.FC<ChatBubbleProps> & {
+  VARIANTS: typeof VARIANTS;
+  STATES: typeof STATES;
+} = ({
   children,
   variant = VARIANTS.SYSTEM,
   state = STATES.DEFAULT,

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, ChangeEvent, KeyboardEvent } from "react";
 import styled from "styled-components";
 import Input from "../../../../components/Input/Input";
 
@@ -12,7 +12,7 @@ const InputContainer = styled.div`
 `;
 
 // 送信ボタン
-const SendButton = styled.button`
+const SendButton = styled.button<{ disabled: boolean }>`
   position: absolute;
   right: 10px;
   bottom: 50%;
@@ -46,7 +46,7 @@ const SendButton = styled.button`
 `;
 
 // 文字カウンター
-const CharCounter = styled.div`
+const CharCounter = styled.div<{ isNearLimit: boolean; show: boolean }>`
   position: absolute;
   right: 50px;
   bottom: 50%;
@@ -80,7 +80,23 @@ const StyledInput = styled(Input)`
   }
 `;
 
-const ChatInput = ({
+interface File {
+  name: string;
+  size: number;
+  type: string;
+  // その他ファイルに関する属性
+}
+
+interface ChatInputProps {
+  onSubmit: (data: { content: string; files: File[] }) => void;
+  isSubmitting?: boolean;
+  disabled?: boolean;
+  placeholder?: string;
+  maxLength?: number;
+  showCounter?: boolean;
+}
+
+const ChatInput: React.FC<ChatInputProps> = ({
   onSubmit,
   isSubmitting = false,
   disabled = false,
@@ -88,17 +104,17 @@ const ChatInput = ({
   maxLength = 4000,
   showCounter = true,
 }) => {
-  const [message, setMessage] = useState("");
-  const [files, setFiles] = useState([]);
-  const inputRef = useRef(null);
+  const [message, setMessage] = useState<string>("");
+  const [files, setFiles] = useState<File[]>([]);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   // メッセージの変更を処理
-  const handleMessageChange = (e) => {
+  const handleMessageChange = (e: ChangeEvent<HTMLInputElement>) => {
     setMessage(e.target.value);
   };
 
   // キー操作を処理
-  const handleKeyDown = (e) => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     // Enterキーで送信（Shiftキーとの組み合わせは改行）
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();

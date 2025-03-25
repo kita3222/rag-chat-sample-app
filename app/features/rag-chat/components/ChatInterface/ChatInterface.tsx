@@ -83,20 +83,44 @@ const SettingsIcon = () => (
   </svg>
 );
 
-const generateUniqueId = () => {
+interface MessageType {
+  id: string;
+  content: string;
+  sender: string;
+  timestamp: string;
+  source?: string;
+  state?: string;
+}
+
+interface FileType {
+  name: string;
+  size: number;
+  type: string;
+  // その他のファイル関連の属性
+}
+
+const generateUniqueId = (): string => {
   return `msg_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 };
 
-const ChatInterface = ({
+interface ChatInterfaceProps {
+  title?: string;
+  initialMessages?: MessageType[];
+  onNewMessage?: (message: MessageType, files?: FileType[]) => Promise<void>;
+  onReset?: () => void;
+  onSettingsClick?: () => void;
+}
+
+const ChatInterface: React.FC<ChatInterfaceProps> = ({
   title = "AI アシスタント",
   initialMessages = [],
   onNewMessage,
   onReset,
   onSettingsClick,
 }) => {
-  const [messages, setMessages] = useState(initialMessages);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState(null);
+  const [messages, setMessages] = useState<MessageType[]>(initialMessages);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [error, setError] = useState<{ message: string } | null>(null);
 
   // 外部からのメッセージ更新を監視
   useEffect(() => {
@@ -106,13 +130,13 @@ const ChatInterface = ({
   }, [initialMessages]);
 
   // 新しいメッセージを送信する関数
-  const handleSubmit = async ({ message, files }) => {
-    if (!message.trim() && (!files || files.length === 0)) return;
+  const handleSubmit = async ({ content, files }: { content: string; files: FileType[] }) => {
+    if (!content.trim() && (!files || files.length === 0)) return;
 
     // ユーザーメッセージを追加
-    const userMessage = {
+    const userMessage: MessageType = {
       id: generateUniqueId(),
-      content: message,
+      content,
       sender: "user",
       timestamp: new Date().toISOString(),
     };
@@ -130,9 +154,9 @@ const ChatInterface = ({
         await new Promise((resolve) => setTimeout(resolve, 2000)); // 2秒待機
 
         // サンプル応答
-        const systemResponse = {
+        const systemResponse: MessageType = {
           id: generateUniqueId(),
-          content: `「${message}」についてのお問い合わせを承りました。これはサンプル応答です。実際の実装では、この部分にRAGを使用した回答生成ロジックが入ります。`,
+          content: `「${content}」についてのお問い合わせを承りました。これはサンプル応答です。実際の実装では、この部分にRAGを使用した回答生成ロジックが入ります。`,
           sender: "system",
           timestamp: new Date().toISOString(),
         };
@@ -141,7 +165,7 @@ const ChatInterface = ({
       }
     } catch (err) {
       setError({
-        message: err.message || "回答の生成中にエラーが発生しました。",
+        message: err instanceof Error ? err.message : "回答の生成中にエラーが発生しました。",
       });
     } finally {
       setIsSubmitting(false);

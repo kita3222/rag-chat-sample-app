@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, ReactNode } from "react";
 import styled from "styled-components";
 import ChatBubble from "../ChatBubble";
 
@@ -104,12 +104,27 @@ const EmptyState = styled.div`
   }
 `;
 
+interface MessageType {
+  id?: string;
+  content: string;
+  sender: string;
+  timestamp: string;
+  source?: string;
+  state?: string;
+  errorMessage?: string;
+}
+
+interface MessageGroup {
+  date: string;
+  messages: MessageType[];
+}
+
 // メッセージをグループ化する関数
-const groupMessagesByDate = (messages) => {
+const groupMessagesByDate = (messages: MessageType[]): MessageGroup[] => {
   if (!messages || messages.length === 0) return [];
 
-  const groups = [];
-  let currentGroup = {
+  const groups: MessageGroup[] = [];
+  let currentGroup: MessageGroup = {
     date: new Date(messages[0].timestamp).toLocaleDateString(),
     messages: [messages[0]],
   };
@@ -134,9 +149,9 @@ const groupMessagesByDate = (messages) => {
 };
 
 // 日本語でフォーマットされた日付を返す関数
-const formatDateJa = (dateString) => {
+const formatDateJa = (dateString: string): string => {
   const date = new Date(dateString);
-  const options = {
+  const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -145,8 +160,22 @@ const formatDateJa = (dateString) => {
   return date.toLocaleDateString("ja-JP", options);
 };
 
-const ChatHistory = ({ messages = [], isLoading = false, error = null }) => {
-  const endOfMessagesRef = useRef(null);
+interface ErrorType {
+  message?: string;
+}
+
+interface ChatHistoryProps {
+  messages?: MessageType[];
+  isLoading?: boolean;
+  error?: ErrorType | null;
+}
+
+const ChatHistory: React.FC<ChatHistoryProps> = ({
+  messages = [],
+  isLoading = false,
+  error = null,
+}) => {
+  const endOfMessagesRef = useRef < HTMLDivElement > null;
 
   // 新しいメッセージが来たら、自動的に一番下までスクロール
   useEffect(() => {
