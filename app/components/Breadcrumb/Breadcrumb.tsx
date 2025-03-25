@@ -11,7 +11,7 @@ export interface BreadcrumbItem {
 export interface BreadcrumbProps {
   items: BreadcrumbItem[];
   title: string;
-  rightComponents?: React.ReactNode;
+  actionComponents?: React.ReactNode;
   className?: string;
 }
 
@@ -78,21 +78,22 @@ const PageTitle = styled.h1`
   text-overflow: ellipsis;
 `;
 
-const RightComponentsContainer = styled.div`
+const ActionContainer = styled.div`
   display: flex;
   align-items: center;
   gap: var(--space-3);
   justify-content: flex-end;
   flex: 0 0 auto;
+  max-width: 300px;
 `;
 
 /**
- * パンくずリストとページタイトル、右側のコンポーネントを表示する汎用コンポーネント
+ * パンくずリストとページタイトル、アクションコンポーネントを表示する汎用コンポーネント
  */
 const Breadcrumb: React.FC<BreadcrumbProps> = ({
   items,
   title,
-  rightComponents,
+  actionComponents,
   className,
 }) => {
   const pathname = usePathname();
@@ -119,8 +120,8 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
         <PageTitle>{title}</PageTitle>
       </BreadcrumbNav>
 
-      {rightComponents && (
-        <RightComponentsContainer>{rightComponents}</RightComponentsContainer>
+      {actionComponents && (
+        <ActionContainer>{actionComponents}</ActionContainer>
       )}
     </BreadcrumbContainer>
   );

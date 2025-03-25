@@ -42,7 +42,7 @@ export const WithSearch: Story = {
   args: {
     items: [{ label: "管理", href: "/admin" }, { label: "ユーザー管理" }],
     title: "ユーザー管理",
-    rightComponents: <SearchComponent />,
+    actionComponents: <SearchComponent />,
   },
 };
 
@@ -51,7 +51,7 @@ export const WithMultipleComponents: Story = {
   args: {
     items: [{ label: "管理", href: "/admin" }, { label: "ユーザー管理" }],
     title: "ユーザー管理",
-    rightComponents: (
+    actionComponents: (
       <>
         <Button variant={Button.VARIANTS.PRIMARY} size={Button.SIZES.SMALL}>
           新規作成

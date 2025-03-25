@@ -127,9 +127,6 @@ export default function AppHeader() {
           <>
             {user.role === "admin" && (
               <>
-                <NavLink href="/admin" $active={isActive("/admin")}>
-                  管理パネル
-                </NavLink>
                 <NavLink
                   href="/admin/knowledge"
                   $active={isActive("/admin/knowledge")}

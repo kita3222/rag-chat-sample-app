@@ -220,7 +220,7 @@ export default function UsersPage() {
         <Breadcrumb
           items={[{ label: "管理", href: "/admin" }, { label: "ユーザー管理" }]}
           title="ユーザー管理"
-          rightComponents={
+          actionComponents={
             <SearchContainer>
               <Button
                 variant={Button.VARIANTS.PRIMARY}

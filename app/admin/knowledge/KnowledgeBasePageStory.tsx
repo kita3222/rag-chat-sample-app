@@ -286,6 +286,9 @@ export default function KnowledgeBasePageStory() {
       value={searchTerm}
       onChange={() => {}}
       inputSize={Input.SIZES.SMALL}
+      style={{
+        width: "150px",
+      }}
     />
   );
 
@@ -369,16 +372,16 @@ export default function KnowledgeBasePageStory() {
             { label: "ナレッジベース管理" },
           ]}
           title="ナレッジベース管理"
-          rightComponents={
+          actionComponents={
             <SearchContainer>
+              {searchComponent}
               <Button
                 variant={Button.VARIANTS.PRIMARY}
                 size={Button.SIZES.SMALL}
                 onClick={handleUploadDocument}
               >
-                新規ドキュメント追加
+                ドキュメント追加
               </Button>
-              {searchComponent}
             </SearchContainer>
           }
         />

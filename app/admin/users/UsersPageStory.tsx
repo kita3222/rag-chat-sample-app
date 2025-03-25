@@ -213,16 +213,16 @@ export default function UsersPageStory() {
         <Breadcrumb
           items={[{ label: "管理", href: "/admin" }, { label: "ユーザー管理" }]}
           title="ユーザー管理"
-          rightComponents={
+          actionComponents={
             <SearchContainer>
+              {searchComponent}
               <Button
                 variant={Button.VARIANTS.PRIMARY}
                 size={Button.SIZES.SMALL}
                 onClick={handleCreateUser}
               >
-                新規ユーザー作成
+                ユーザー追加
               </Button>
-              {searchComponent}
             </SearchContainer>
           }
         />
