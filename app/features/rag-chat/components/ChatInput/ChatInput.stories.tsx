@@ -71,9 +71,9 @@ export const Interactive: Story = {
         Array<{ text: string; type: "user" | "system" }>
       >([]);
 
-      const handleSubmit = (text: string) => {
+      const handleSubmit = (data: { content: string; files: any[] }) => {
         // メッセージを追加
-        setMessages((prev) => [...prev, { text, type: "user" }]);
+        setMessages((prev) => [...prev, { text: data.content, type: "user" }]);
         setValue("");
 
         // ローディング状態を設定
@@ -85,7 +85,7 @@ export const Interactive: Story = {
           setMessages((prev) => [
             ...prev,
             {
-              text: `「${text}」に対する応答です。RAGチャットのデモ応答です。`,
+              text: `「${data.content}」に対する応答です。RAGチャットのデモ応答です。`,
               type: "system",
             },
           ]);

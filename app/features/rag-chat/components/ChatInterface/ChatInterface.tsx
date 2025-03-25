@@ -130,7 +130,13 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
   }, [initialMessages]);
 
   // 新しいメッセージを送信する関数
-  const handleSubmit = async ({ content, files }: { content: string; files: FileType[] }) => {
+  const handleSubmit = async ({
+    content,
+    files,
+  }: {
+    content: string;
+    files: FileType[];
+  }) => {
     if (!content.trim() && (!files || files.length === 0)) return;
 
     // ユーザーメッセージを追加
@@ -165,7 +171,10 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
       }
     } catch (err) {
       setError({
-        message: err instanceof Error ? err.message : "回答の生成中にエラーが発生しました。",
+        message:
+          err instanceof Error
+            ? err.message
+            : "回答の生成中にエラーが発生しました。",
       });
     } finally {
       setIsSubmitting(false);

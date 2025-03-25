@@ -1,6 +1,12 @@
 "use client";
 
-import React, { useState, useRef, useEffect, ChangeEvent, KeyboardEvent } from "react";
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  ChangeEvent,
+  KeyboardEvent,
+} from "react";
 import styled from "styled-components";
 import Input from "../../../../components/Input/Input";
 
@@ -88,8 +94,11 @@ interface File {
 }
 
 interface ChatInputProps {
-  onSubmit: (data: { content: string; files: File[] }) => void;
+  onSubmit?: (data: { content: string; files: File[] }) => void;
+  onChange?: (value: string) => void;
+  value?: string;
   isSubmitting?: boolean;
+  isLoading?: boolean;
   disabled?: boolean;
   placeholder?: string;
   maxLength?: number;
@@ -98,19 +107,35 @@ interface ChatInputProps {
 
 const ChatInput: React.FC<ChatInputProps> = ({
   onSubmit,
+  onChange,
+  value,
   isSubmitting = false,
+  isLoading = false,
   disabled = false,
   placeholder = "メッセージを入力...",
   maxLength = 4000,
   showCounter = true,
 }) => {
-  const [message, setMessage] = useState<string>("");
+  const [message, setMessage] = useState<string>(value || "");
   const [files, setFiles] = useState<File[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // 外部で管理される値が変更された場合に内部状態を更新
+  useEffect(() => {
+    if (value !== undefined) {
+      setMessage(value);
+    }
+  }, [value]);
+
   // メッセージの変更を処理
   const handleMessageChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setMessage(e.target.value);
+    const newValue = e.target.value;
+    setMessage(newValue);
+
+    // 外部のonChangeハンドラーがあれば呼び出す
+    if (onChange) {
+      onChange(newValue);
+    }
   };
 
   // キー操作を処理
@@ -124,10 +149,17 @@ const ChatInput: React.FC<ChatInputProps> = ({
 
   // 送信処理
   const handleSubmit = () => {
-    if (isSubmitting || disabled || !message.trim()) return;
+    if (isSubmitting || isLoading || disabled || !message.trim()) return;
 
-    onSubmit({ content: message.trim(), files });
-    setMessage("");
+    if (onSubmit) {
+      onSubmit({ content: message.trim(), files });
+    }
+
+    // 外部で値が管理されていない場合のみ内部状態をクリア
+    if (value === undefined) {
+      setMessage("");
+    }
+
     setFiles([]);
 
     // フォーカスを維持
@@ -149,7 +181,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
         onChange={handleMessageChange}
         onKeyDown={handleKeyDown}
         placeholder={placeholder}
-        disabled={isSubmitting || disabled}
+        disabled={isSubmitting || isLoading || disabled}
         maxLength={maxLength}
         aria-label="チャットメッセージ入力"
         inputSize="LARGE"
@@ -163,7 +195,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
 
       <SendButton
         onClick={handleSubmit}
-        disabled={isSubmitting || disabled || !message.trim()}
+        disabled={isSubmitting || isLoading || disabled || !message.trim()}
         aria-label="メッセージを送信"
         title="送信"
       >
