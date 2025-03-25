@@ -127,14 +127,17 @@ export default function AppHeader() {
           <>
             {user.role === "admin" && (
               <>
-                <NavLink href="/admin/users" $active={isActive("/admin/users")}>
-                  ユーザー管理
+                <NavLink href="/admin" $active={isActive("/admin")}>
+                  管理パネル
                 </NavLink>
                 <NavLink
-                  href="/knowledge-base"
-                  $active={isActive("/knowledge-base")}
+                  href="/admin/knowledge"
+                  $active={isActive("/admin/knowledge")}
                 >
                   ナレッジベース
+                </NavLink>
+                <NavLink href="/admin/users" $active={isActive("/admin/users")}>
+                  ユーザー管理
                 </NavLink>
               </>
             )}
